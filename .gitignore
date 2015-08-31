@@ -1,0 +1,4 @@
+*.idea
+*.xml
+*.pyc
+gateway_config.py
