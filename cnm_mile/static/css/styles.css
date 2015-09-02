@@ -1,0 +1,54 @@
+#header {
+
+    background-color: #003A70;
+    padding: 3px 3px 3px 3px;
+    height: 68px;
+    border-bottom: 4px solid #41b6e6;
+}
+
+#header img {
+    height: 60px;
+    width: auto;
+
+}
+
+#content {
+    padding: 20px 20px 20px 20px;
+
+
+}
+
+#id_department {
+       font-size: 26px;
+}
+
+.align_center {
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
+
+footer {
+    color: white;
+    background-color: #003A70;
+    border-top: 3px solid #F6BE00;
+    width: 100%;
+}
+
+@media (max-width: 580px) {
+   input {
+       height: 34px;
+       width: 80%;
+   }
+   form {
+       font-size: 20px;
+   }
+}
+
+@media (max-width: 990px) {
+    h1 {
+        text-align: left;
+    }
+}
+
