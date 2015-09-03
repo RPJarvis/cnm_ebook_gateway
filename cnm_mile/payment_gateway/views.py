@@ -31,19 +31,35 @@ def send_inkling_mail(request):
             context = RequestContext(request)
             message = ''
             display_email = {}
-            #if resposne from touchnet is good do this:
-            try:
-                display_email = {'subject': 'CNM MILE purchase', 'message': 'this is the message to inkling. send my ebook!',
-                                 'from_field': 'MILE_Orders@cnm.edu', 'to_field': form.cleaned_data['cnm_email']}
+            #if response from touchnet is good do this:
 
-                send_mail(display_email['subject'], display_email['message'], display_email['from_field'],
-                          display_email['to_field'], fail_silently=False)
+            display_email = {'subject': 'CNM MILE purchase', 'message': 'this is the message to inkling. send my ebook!',
+                                 'from_field': 'MILE_Orders@cnm.edu', 'to_field': [form.cleaned_data['cnm_email']]}
 
-                message = 'Mail successfully sent'
+            send_mail(display_email['subject'], display_email['message'], display_email['from_field'],
+                        display_email['to_field'], fail_silently=False)
 
-            except:
-                message = 'There was a problem'
+            message = 'Mail successfully sent'
+
+
 
             context_dict = {'message': message, 'display_email': display_email}
 
             return render_to_response('payment_gateway/index.html', context_dict, context)
+
+
+#inkling partner key: Partner Key: p-529864ffd7394252a900c4e2a4ba76a1
+  #To inkling
+#         {
+#     "email": "john@gmail.com",
+#     "productId": "3c9e50736eb549a5bc951bc100b630a2",
+#     "firstName": "John",
+#     "lastName": "Doe",
+#     "receiveEmail": true,
+#     "checkoutAmount": 1000,
+#     "partnerInfo": {
+#         "partnerSiteId": "...",
+#         "partnerPermaItemUrl": "...",
+#         "partnerTransactionId": "...",
+#     }
+# }
