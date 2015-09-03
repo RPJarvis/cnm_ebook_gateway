@@ -116,3 +116,5 @@ STATIC_ROOT = PROJECT_PATH + '/static_files'
 
 TOUCHNET = gateway_config.TOUCHNET
 
+#this will have to be changed to use smtp later but might be able to use this as well
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

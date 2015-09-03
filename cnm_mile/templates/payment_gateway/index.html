@@ -12,9 +12,26 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div>
+            <div id="header" class="row">
+                <a href="https://www.cnm.edu" role="navigation">
+                    <img class="align_center" alt="Link to CNM Homepage" src="{% static "images/cnm-logo.png" %}">
+                </a>
+            </div>
+        </div>
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <form action="/somethingcrazy" method="post">
+            {% if message %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endif %}
+            {% if display_email %}
+                {% for key, value in display_email.items %}
+                    {{ key }}:  {{ value }} <br/>
+                {% endfor %}
+            {% endif %}
+            <form action="/send_inkling_mail" method="POST">
                 {% csrf_token %}
                 {%  for field in form.visible_fields %}
                     <div class="field-container">
@@ -25,16 +42,17 @@
                     </div>
                 {% endfor %}
                 <br />
-                <input type="submit" value="FakeButton" role="button"/>
+                <input type="submit" value="Fake It" role="button"/>
             </form>
         </div>
         <div class="col-md-2"></div>
 
     </div>
     <footer class="align_center">
-        <span>© 2012 Central New Mexico Community College - 525 Buena Vista Dr. SE, Albuquerque, NM 87106</span>
+        <span>© 2015 Central New Mexico Community College - 525 Buena Vista Dr. SE, Albuquerque, NM 87106</span>
     </footer>
     <script src="{% static "js/jquery-2.1.1.js" %}"/>
     <script src="{% static "js/bootstrap.min.js" %}"/>
 </body>
 </html>
+
