@@ -1,0 +1,17 @@
+
+{% block product_block %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h3>Product List</h3>
+        {% for product in product_list %}
+            {{ product.title }}
+            {{ product.author }}
+
+        {% endfor %}
+    </div>
+    <br/>
+    <br/>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}

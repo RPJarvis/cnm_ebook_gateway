@@ -1,4 +1,6 @@
 *.idea
 *.xml
 *.pyc
+*.jpg
+*.jpeg
 gateway_config.py

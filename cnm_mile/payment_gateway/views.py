@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from payment_gateway import forms
 from django.core.mail import send_mail
+from .models import Product
 # Create your views here.
 
 
@@ -10,9 +11,11 @@ def index(request):
 
     form = forms.UserInfoForm()
 
-    context_dict = {'form': form}
+    product_list = Product.objects.all()
 
-    return render_to_response('payment_gateway/index.html', context_dict, context)
+    context_dict = {'form': form, 'product_list': product_list}
+
+    return render_to_response('payment_gateway/base.html', context_dict, context)
 
 #send_mail('Subject here', 'Here is the message.', 'from@example.com',
 #    ['to@example.com'], fail_silently=False)
@@ -27,11 +30,11 @@ def index(request):
 def send_inkling_mail(request):
     if request.method == 'POST':
         form = forms.UserInfoForm(request.POST)
+        product_list = Product.objects.all()
         if form.is_valid():
             context = RequestContext(request)
             message = ''
             display_email = {}
-            #if response from touchnet is good do this:
 
             display_email = {'subject': 'CNM MILE purchase', 'message': 'this is the message to inkling. send my ebook!',
                                  'from_field': 'MILE_Orders@cnm.edu', 'to_field': [form.cleaned_data['cnm_email']]}
@@ -43,9 +46,10 @@ def send_inkling_mail(request):
 
 
 
-            context_dict = {'message': message, 'display_email': display_email}
 
-            return render_to_response('payment_gateway/index.html', context_dict, context)
+            context_dict = {'message': message, 'display_email': display_email, 'product_list': product_list}
+
+            return render_to_response('payment_gateway/product_block.html', context_dict, context)
 
 
 #inkling partner key: Partner Key: p-529864ffd7394252a900c4e2a4ba76a1
