@@ -17,16 +17,6 @@ def index(request):
 
     return render_to_response('payment_gateway/base.html', context_dict, context)
 
-#send_mail('Subject here', 'Here is the message.', 'from@example.com',
-#    ['to@example.com'], fail_silently=False)
-
-
-
-
-#click button to fake return post from touchnet
-#send email
-
-#this function needs to ber a callback function once touchnet respons
 def send_inkling_mail(request):
     if request.method == 'POST':
         form = forms.UserInfoForm(request.POST)
@@ -43,9 +33,6 @@ def send_inkling_mail(request):
                         display_email['to_field'], fail_silently=False)
 
             message = 'Mail successfully sent'
-
-
-
 
             context_dict = {'message': message, 'display_email': display_email, 'product_list': product_list}
 
