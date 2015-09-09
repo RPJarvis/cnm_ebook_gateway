@@ -39,18 +39,18 @@ def send_inkling_mail(request):
             return render_to_response('payment_gateway/product_block.html', context_dict, context)
 
 
-#inkling partner key: Partner Key: p-529864ffd7394252a900c4e2a4ba76a1
-  #To inkling
-#         {
-#     "email": "john@gmail.com",
-#     "productId": "3c9e50736eb549a5bc951bc100b630a2",
-#     "firstName": "John",
-#     "lastName": "Doe",
-#     "receiveEmail": true,
-#     "checkoutAmount": 1000,
-#     "partnerInfo": {
-#         "partnerSiteId": "...",
-#         "partnerPermaItemUrl": "...",
-#         "partnerTransactionId": "...",
-#     }
-# }
+#might not need this
+def pass_to_touchnet(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('last_name')
+        #LOGGING SHOULD HAPPEN ON CALLBACK
+
+def pass_to_inkling(request):
+    if request.method == 'POST':
+        stuff = 'stuff'
+
+
+
+#HAVE BUTTON CLICK PASS VALUES TO DFIFFERENT URL THAT HANDLES POST REQUEST?

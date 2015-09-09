@@ -1,5 +1,6 @@
 
 {% block form_block %}
+<hr>
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -13,7 +14,7 @@
                 {{ key }}:  {{ value }} <br/>
             {% endfor %}
         {% endif %}
-        <form action="/send_inkling_mail" method="POST">
+        <form action="/pass_to_touchnet" method="POST">
             {% csrf_token %}
             {%  for field in form.visible_fields %}
                 <div class="field-container">
@@ -26,7 +27,13 @@
             <br />
             <input type="submit" value="Fake It" role="button"/>
         </form>
+        <br>
+        <form action="/pass_to_inkling">
+            <input type="submit" value="test inkling post" role="button">
+        </form>
+        <img src="/static/images/ajaxloader.gif" id="loading_image">
     </div>
     <div class="col-md-2"></div>
 </div>
+<hr>
 {% endblock %}

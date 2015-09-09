@@ -38,8 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'touchnet',
     'payment_gateway',
+    'transaction_logging',
 )
 
 MIDDLEWARE_CLASSES = (

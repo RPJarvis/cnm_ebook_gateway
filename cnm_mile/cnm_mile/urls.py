@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from transaction_logging import urls
 
 urlpatterns = [
     url(r'^', include('payment_gateway.urls')),
     url(r'^admin/', include(admin.site.urls)),
-
+    url(r'^', include('transaction_logging.urls'))
 ]
