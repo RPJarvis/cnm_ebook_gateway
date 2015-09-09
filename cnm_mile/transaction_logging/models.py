@@ -9,6 +9,7 @@ class TouchnetTransaction(models.Model):
     success_or_fail = models.CharField(max_length=20)
     details = models.TextField()
 
+#TODO: do these need tp __unicode__?
     def __str__(self):
         return str(self.date_created) + ' ' + self.user_id
 
