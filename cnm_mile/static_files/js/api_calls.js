@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     //GET /products/3c9e50736eb549a5bc951bc100b630a2?email=john@gmail.com&access_token=<key>
     function checkOwnership(email) {
-        //TODO: WTF is access token
+        //TODO: dint need access token, api key is fine
         var check_url = "/products/3c9e50736eb549a5bc951bc100b630a2?email=" + email + "&access_token=<key>";
         $.ajax({
             url: check_url,

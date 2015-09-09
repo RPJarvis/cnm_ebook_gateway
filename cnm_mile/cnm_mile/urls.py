@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 from transaction_logging import urls
 
 urlpatterns = [
@@ -22,3 +24,10 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('transaction_logging.urls'))
 ]
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
+    )
+
+              #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#might not need the + static

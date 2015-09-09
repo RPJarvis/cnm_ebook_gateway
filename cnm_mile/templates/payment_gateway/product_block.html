@@ -6,8 +6,12 @@
         <h3>Product List</h3>
         <ul>
             {% for product in product_list %}
+                <img src="{{ product.cover_image }}">
                 {{ product.title }}
+                by
                 {{ product.author }}
+                {{ product.price }}
+                <br>
             {% endfor %}
         </ul>
     </div>

@@ -10,6 +10,7 @@ class UserInfo(models.Model):
     def __str__(self):
         return self.cnm_email
 
+
 class Product(models.Model):
     title = models.CharField(verbose_name="Title", max_length=40)
     author = models.CharField(verbose_name="Author", max_length=40)
@@ -20,8 +21,3 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     #probably need isbns and junk here
-
-#class PurchaseHistory(models.Model):
-
-
-
