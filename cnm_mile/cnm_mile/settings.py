@@ -119,7 +119,8 @@ TOUCHNET = gateway_config.TOUCHNET
 #this will have to be changed to use smtp later but might be able to use this as well
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-#this will change in prod
-MEDIA_ROOT = '/Users/rjarvis1/Devel/cnm_mile/cnm_mile/media/'
 
 MEDIA_URL = '/media/'
+#this will change in prod
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+

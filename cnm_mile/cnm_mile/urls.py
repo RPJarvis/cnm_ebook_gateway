@@ -25,9 +25,10 @@ urlpatterns = [
     url(r'^', include('transaction_logging.urls'))
 ]
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^media/', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
-    )
-
+    urlpatterns += patterns(
+        'django.views.static',
+        (r'media/(?P<path>.*)',
+        'serve',
+        {'document_root': settings.MEDIA_ROOT}), )
               #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #might not need the + static

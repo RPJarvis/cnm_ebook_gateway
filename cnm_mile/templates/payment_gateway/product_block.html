@@ -1,17 +1,20 @@
 
 {% block product_block %}
+    {% load static %}
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <h3>Product List</h3>
         <ul>
             {% for product in product_list %}
-                <img src="{{ product.cover_image }}">
-                {{ product.title }}
-                by
-                {{ product.author }}
-                {{ product.price }}
-                <br>
+                <div>
+                    <img src="{{ product.cover_image.url }}" class="cover-image"/>
+                    {{ product.title }}
+                    by
+                    {{ product.author }}
+                    {{ product.price }}
+                    <br>
+                </div>
             {% endfor %}
         </ul>
     </div>
