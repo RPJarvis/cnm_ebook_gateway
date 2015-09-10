@@ -1,25 +1,23 @@
 
 {% block product_block %}
-    {% load static %}
+
 <div class="row">
+    <h3 class="align_center">Product List</h3>
     <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <h3>Product List</h3>
-        <ul>
-            {% for product in product_list %}
-                <div>
-                    <img src="{{ product.cover_image.url }}" class="cover-image"/>
-                    {{ product.title }}
-                    by
-                    {{ product.author }}
-                    {{ product.price }}
-                    <br>
-                </div>
-            {% endfor %}
-        </ul>
-    </div>
-    <br/>
-    <br/>
+        {% for product in product_list %}
+            <div class="product-listing col-md-2">
+                <img src="{{ product.cover_image.url }}" class="cover-image"/>
+                <br>
+                {{ product.title }}
+                by
+                {{ product.author }}
+                <br>
+                {{ product.price }}
+                <br>
+                {{ product.description }}
+                <br>
+            </div>
+        {% endfor %}
     <div class="col-md-2"></div>
 </div>
 {% endblock %}

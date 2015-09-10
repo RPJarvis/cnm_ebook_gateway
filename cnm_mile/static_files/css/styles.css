@@ -60,3 +60,13 @@ body {
     display: none;
 }
 
+
+.cover-image {
+    height: 120px;
+    width: 80px;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+

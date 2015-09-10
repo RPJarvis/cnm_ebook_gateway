@@ -63,5 +63,22 @@ body {
 
 .cover-image {
     height: 120px;
-    width: auto;
+    width: 80px;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.row {
+    margin: 0;
+}
+
+.product-listing {
+    display: inline-block;
 }

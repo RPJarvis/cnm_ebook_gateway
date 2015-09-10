@@ -32,7 +32,7 @@ $(document).ready(function(){
 
     function passToTouchnet(){
 
-        //open in new window
+        //open in new window UPAY_SITE_ID=1
 
         $.ajax({
             url : "/pass_to_touchnet/", //django url

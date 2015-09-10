@@ -3,6 +3,7 @@ from django.template import RequestContext
 from payment_gateway import forms
 from django.core.mail import send_mail
 from .models import Product
+import math
 # Create your views here.
 
 
@@ -12,6 +13,18 @@ def index(request):
     form = forms.UserInfoForm()
 
     product_list = Product.objects.all()
+
+    #build ins ome logic for determining number of rows. pass to template in context dict
+
+    num_products = 11#len(product_list)
+    if num_products % 3 == 0:
+        num_rows = num_products/3
+    else:
+        num_rows = (num_products/3) + 1
+
+   # num_rows = math.ceil(num_products / 3)
+
+    print(num_rows)
 
     context_dict = {'form': form, 'product_list': product_list}
 
