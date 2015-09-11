@@ -45,42 +45,6 @@ $(document).ready(function(){
             //TODO: success and error
         })
     }
-
-    function passToInkling(){
-        $.ajax({
-            url  : "https://partner.inkling.com/",
-            type : "POST",
-            data : {
-             "email": "john@gmail.com",
-             "productId": "3c9e50736eb549a5bc951bc100b630a2",
-             "firstName": "John",
-             "lastName": "Doe",
-             "receiveEmail": true,
-             "checkoutAmount": 1000,
-             "partnerInfo": {
-                 "partnerSiteId": "...",
-                 "partnerPermaItemUrl": "...",
-                 "partnerTransactionId": "..."
-              }
-            },
-
-            success : function(json) {
-                //append return values to results div, or something;
-                    return 2;
-            },
-
-
-            error : function(xhr, errmsg){
-                /*$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "
-                    + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom*/
-                $('#results').html("<div class='alert-box alert radius' data-alert>Something went wrong."
-                    + errmsg + " <a href='#' class='close'>&times;</a></div>");
-                console.log(xhr.status + ": " + xhr.responseText);
-                // provide a bit more info about the error to the console
-                //
-            }
-        });
-    }
 });
 
 /*

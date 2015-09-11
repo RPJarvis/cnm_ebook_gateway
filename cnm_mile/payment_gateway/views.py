@@ -1,8 +1,10 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, HttpResponse
 from django.template import RequestContext
 from payment_gateway import forms
 from django.core.mail import send_mail
 from .models import Product
+import json
+import inkling_tools
 import math
 # Create your views here.
 
@@ -30,27 +32,6 @@ def index(request):
 
     return render_to_response('payment_gateway/base.html', context_dict, context)
 
-def send_inkling_mail(request):
-    if request.method == 'POST':
-        form = forms.UserInfoForm(request.POST)
-        product_list = Product.objects.all()
-        if form.is_valid():
-            context = RequestContext(request)
-            message = ''
-            display_email = {}
-
-            display_email = {'subject': 'CNM MILE purchase', 'message': 'this is the message to inkling. send my ebook!',
-                                 'from_field': 'MILE_Orders@cnm.edu', 'to_field': [form.cleaned_data['cnm_email']]}
-
-            send_mail(display_email['subject'], display_email['message'], display_email['from_field'],
-                        display_email['to_field'], fail_silently=False)
-
-            message = 'Mail successfully sent'
-
-            context_dict = {'message': message, 'display_email': display_email, 'product_list': product_list}
-
-            return render_to_response('payment_gateway/product_block.html', context_dict, context)
-
 
 #might not need this
 def pass_to_touchnet(request):
@@ -61,8 +42,23 @@ def pass_to_touchnet(request):
         #LOGGING SHOULD HAPPEN ON CALLBACK
 
 def pass_to_inkling(request):
-    if request.method == 'POST':
-        stuff = 'stuff'
+    #TODO: pull from form
+    data = {
+        "email": "sulabh@inkling.com",
+        "productId": "0f6ae180718a48debdf0a12630ff647e",
+        "firstName": "Sulabh",
+        "lastName": "Mathur",
+        "receiveEmail": True,
+        "checkoutAmount": 1000,
+        "partnerInfo": {
+            "partnerSiteId": "...",
+            "partnerPermaItemUrl": "...",
+            "partnerTransactionId": "..."
+        }
+    }
+    inkling_tools.get_list_of_titles()
+    #log here
+    return HttpResponse(json.dumps({"did it work?": "maybe"}))
 
 
 

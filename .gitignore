@@ -4,3 +4,4 @@
 *.jpg
 *.jpeg
 gateway_config.py
+inkling_tools.py
