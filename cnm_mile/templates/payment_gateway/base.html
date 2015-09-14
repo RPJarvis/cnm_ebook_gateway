@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% include 'payment_gateway/index.html' %}
 {% load staticfiles %}
+{% load static %}
 <html>
 <head lang="en">
     {% load static from staticfiles %}
@@ -21,7 +22,8 @@
     <footer class="align_center">
         <span>© 2015 Central New Mexico Community College - 525 Buena Vista Dr. SE, Albuquerque, NM 87106</span>
     </footer>
-    <script src="{% static "js/jquery-2.1.1.js" %}"/>
-    <script src="{% static "js/bootstrap.min.js" %}"/>
+    <script src="{% static "js/jquery-2.1.1.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/api_calls.js" %}"></script>
 </body>
 </html>
