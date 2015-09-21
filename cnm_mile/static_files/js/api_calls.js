@@ -75,8 +75,7 @@ $(document).ready(function(){
 
             success: function (json) {
                 console.log(json);
-                console.log(json[1]);
-
+                console.log(json['firstNameErrors'][0]);
                 $('#messages').prepend("<tr><th>Name</th><th>Phone</th><th>Email</th><th>Title</th>" +
                 "<th>Department</th></tr>");
                 $('#messages').append(json);

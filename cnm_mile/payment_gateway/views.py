@@ -7,6 +7,7 @@ from transaction_logging import models
 import json
 import inkling_tools
 import math
+from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
@@ -70,33 +71,31 @@ def pass_to_inkling(request):
                  "partnerTransactionId": "..."
              }
         }
+        new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title='whatever',
+                                           success_or_fail='test', details='none')
+        new_log_entry.save()
 
         titles = inkling_tools.get_list_of_titles()
          #TODO: log here
         response_data = inkling_tools.post('/purchases', data)
 
         json_data = json.dumps(response_data)
-        #print(json_data)
 
-        json_data_dict = json.loads(json_data)
 
         #TODO: here we go: also remove json.dumps i think
-        print('info: ')
-        print(json_data_dict['info'])
-        print('status: ')
-        print(json_data_dict['status'])
-        print('result: ')
-        print(json_data_dict['result'])
 
-        if form_errors['first_name'] or form.errors['last_name'] or form.errors['cnm_email']:
-            errors = {
-                "firstNameErrors": form.errors['first_name'],
-                "lastNameErrors": form.errors['last_name'],
-                "email": form.errors['cnm_email']
-            }
-            return HttpResponse(
-                json.dumps(errors)
-            )
+        # if form_errors['first_name'] or form.errors['last_name'] or form.errors['cnm_email']:
+        #     errors = {
+        #         "firstNameErrors": form.errors['first_name'],
+        #         "lastNameErrors": form.errors['last_name'],
+        #         "email": form.errors['cnm_email']
+        #     }
+        #     print('error response')
+        #     return HttpResponse(
+        #         json.dumps(errors)
+        #     )
+        # else:
+        print('resposne')
         return HttpResponse(
             json.dumps(json_data),
             content_type="application/json"

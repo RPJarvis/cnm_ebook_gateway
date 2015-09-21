@@ -73,13 +73,15 @@ $(document).ready(function(){
             //TODO: success and error
 
 
-            success: function (json) {
-                result_obj = JSON.parse(json);
-                console.log(result_obj);
-                console.log(result_obj['status']);
-                console.log(result_obj['result']);
-                $('#loading_image').hide();
+            success: function(json){
+                console.log(json);
+                //TODO:conditional here to redisplay form on error??
+                //result_obj = JSON.parse(json);
+                //console.log(result_obj);
+                //console.log(result_obj['email'][0]);
 
+                $('#loading_image').hide();
+               // $('#messages').clear();
                 $('#messages').prepend("<h1>Results here:</1>");
                 $('#messages').append(json);
 
@@ -87,12 +89,18 @@ $(document).ready(function(){
                 // "status": {"statusMsg": "Schema validation failed.",
                 // "statusDetails": {"resource": "Purchase", "error": "Value u'' for field 'firstName' cannot be blank"},
                 // "statusCode": "SchemaValidationError"}, "result": {}}
+            },
+
+            error: function(json){
+                console.log('error');
+                $('#loading_image').hide();
+                $('#messages').append(json);
             }
         });
     }
     $('#user_form').on('submit', function(event){
         event.preventDefault();
-        $('#user_form').hide();
+        //$('#user_form').hide();
         $('#loading_image').show();
         console.log('can is ee this?');
         passToInkling();
