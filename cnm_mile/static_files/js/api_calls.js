@@ -4,6 +4,10 @@ $(document).ready(function(){
     }).bind('ajaxStop', function(){
         $(this).hide();
     });
+    function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
     function passToTouchnet(){
         //open in new window UPAY_SITE_ID=1
         $.ajaxSetup({
@@ -45,7 +49,7 @@ $(document).ready(function(){
                 return cookieValue;
         }
         var csrftoken = getCookie('csrftoken');
-        console.log(csrftoken);
+
         function csrfSafeMethod(method) {
             // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -70,6 +74,8 @@ $(document).ready(function(){
 
 
             success: function (json) {
+                console.log(json);
+                console.log(json[1]);
                 $('#messages').empty();
                 $('#messages').prepend("<tr><th>Name</th><th>Phone</th><th>Email</th><th>Title</th>" +
                 "<th>Department</th></tr>");
@@ -100,3 +106,7 @@ inkling partner key: Partner Key: p-529864ffd7394252a900c4e2a4ba76a1
     });
 
 });
+
+function displayInklingResult(json){
+
+}

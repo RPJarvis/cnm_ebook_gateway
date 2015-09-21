@@ -3,6 +3,7 @@ from django.template import RequestContext
 from payment_gateway import forms
 from django.core.mail import send_mail
 from .models import Product, UserInfo
+from transaction_logging import models
 import json
 import inkling_tools
 import math
@@ -29,7 +30,7 @@ def index(request):
 
     print(num_rows)
 
-    context_dict = {'form': form, 'product_list': product_list}
+    context_dict = {'form': form, 'product_list': product_list,}
 
     return render_to_response('payment_gateway/base.html', context_dict, context)
 
@@ -43,7 +44,6 @@ def pass_to_touchnet(request):
         #LOGGING SHOULD HAPPEN ON CALLBACK
 
 
-
 def pass_to_inkling(request):
     context = RequestContext(request)
     print(request.method)
@@ -54,11 +54,6 @@ def pass_to_inkling(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('cnm_email')
-        print(first_name)
-        print(last_name)
-        print(email)
-
-        response_data = {}
 
         data = {
              "email": email,
@@ -75,12 +70,21 @@ def pass_to_inkling(request):
         }
 
         titles = inkling_tools.get_list_of_titles()
-         #log here
+         #TODO: log here
         response_data = inkling_tools.post('/purchases', data)
 
-        #if  "statusCode": "HTTPCreated"
         json_data = json.dumps(response_data)
-        context_dict = {'json_data': json_data}
+        #print(json_data)
+
+        json_data_dict = json.loads(json_data)
+
+        #TODO: here we go: also remove json.dumps i think
+        print('info: ')
+        print(json_data_dict['info'])
+        print('status: ')
+        print(json_data_dict['status'])
+        print('result: ')
+        print(json_data_dict['result'])
 
         return HttpResponse(
             json.dumps(json_data),

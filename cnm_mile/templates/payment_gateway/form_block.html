@@ -14,21 +14,6 @@
                 {{ key }}:  {{ value }} <br/>
             {% endfor %}
         {% endif %}
-        <form action="/pass_to_touchnet" method="post" id="user_form">
-            {% csrf_token %}
-            {%  for field in form.visible_fields %}
-                <div class="field-container">
-                    {{ field.label }}
-                    <br />
-                    {{ field }}
-                    <br />
-                    {{ field.errors }}
-                </div>
-            {% endfor %}
-            <br />
-            <input type="submit" value="Fake It" role="button"/>
-        </form>
-        <br>
         <form action="/pass_to_inkling/" method="post" id="user_form">
             {% csrf_token %}
                         {%  for field in form.visible_fields %}

@@ -74,31 +74,26 @@ $(document).ready(function(){
 
 
             success: function (json) {
+                result_obj = JSON.parse(json);
+                console.log(result_obj);
+                console.log(result_obj['status']);
+                console.log(result_obj['result']);
+                $('#loading_image').hide();
                 $('#messages').empty();
-                $('#messages').prepend("<tr><th>Name</th><th>Phone</th><th>Email</th><th>Title</th>" +
-                "<th>Department</th></tr>");
+                $('#messages').prepend("<h1>Results here:</1>");
                 $('#messages').append(json);
+
+                //{"info": {},
+                // "status": {"statusMsg": "Schema validation failed.",
+                // "statusDetails": {"resource": "Purchase", "error": "Value u'' for field 'firstName' cannot be blank"},
+                // "statusCode": "SchemaValidationError"}, "result": {}}
             }
         });
     }
-/*
-inkling partner key: Partner Key: p-529864ffd7394252a900c4e2a4ba76a1
-  To inkling
-         {
-     "email": "john@gmail.com",
-     "productId": "3c9e50736eb549a5bc951bc100b630a2",
-     "firstName": "John",
-     "lastName": "Doe",
-     "receiveEmail": true,
-     "checkoutAmount": 1000,
-     "partnerInfo": {
-         "partnerSiteId": "...",
-         "partnerPermaItemUrl": "...",
-         "partnerTransactionId": "...",
-     }
- }*/
     $('#user_form').on('submit', function(event){
         event.preventDefault();
+        $('#user_form').hide();
+        $('#loading_image').show();
         console.log('can is ee this?');
         passToInkling();
     });
