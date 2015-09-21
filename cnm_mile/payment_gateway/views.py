@@ -15,7 +15,7 @@ def index(request):
     context = RequestContext(request)
 
     form = forms.UserInfoForm()
-
+    form_errors = form.errors.as_data()
     product_list = Product.objects.all()
 
     #build ins ome logic for determining number of rows. pass to template in context dict
@@ -30,7 +30,7 @@ def index(request):
 
     print(num_rows)
 
-    context_dict = {'form': form, 'product_list': product_list,}
+    context_dict = {'form': form, 'product_list': product_list, 'form_errors': form_errors}
 
     return render_to_response('payment_gateway/base.html', context_dict, context)
 
@@ -46,11 +46,13 @@ def pass_to_touchnet(request):
 
 def pass_to_inkling(request):
     context = RequestContext(request)
-    print(request.method)
-    print(request)
     if request.method == 'POST':
         form = forms.UserInfoForm(request.POST)
-        print(form.is_valid())
+        form_errors = form.errors.as_data()
+        print('form errors')
+        print(form_errors)
+        #print(form.is_valid())
+
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('cnm_email')
@@ -86,6 +88,15 @@ def pass_to_inkling(request):
         print('result: ')
         print(json_data_dict['result'])
 
+        if form_errors['first_name'] or form.errors['last_name'] or form.errors['cnm_email']:
+            errors = {
+                "firstNameErrors": form.errors['first_name'],
+                "lastNameErrors": form.errors['last_name'],
+                "email": form.errors['cnm_email']
+            }
+            return HttpResponse(
+                json.dumps(errors)
+            )
         return HttpResponse(
             json.dumps(json_data),
             content_type="application/json"

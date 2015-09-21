@@ -79,7 +79,7 @@ $(document).ready(function(){
                 console.log(result_obj['status']);
                 console.log(result_obj['result']);
                 $('#loading_image').hide();
-                $('#messages').empty();
+
                 $('#messages').prepend("<h1>Results here:</1>");
                 $('#messages').append(json);
 

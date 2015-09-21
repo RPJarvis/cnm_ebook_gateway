@@ -4,6 +4,7 @@
     <div class="errors row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+            {{ form.errors }}
             {% if form.first_name.errors %}
                 First Name: {{ form.first_name.errors }}
             {% endif %}
