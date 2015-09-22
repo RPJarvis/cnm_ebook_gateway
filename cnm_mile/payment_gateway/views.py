@@ -18,7 +18,7 @@ def index(request):
     form = forms.UserInfoForm()
     form_errors = form.errors.as_data()
     product_list = Product.objects.all()
-
+    print(type(product_list))
     #build ins ome logic for determining number of rows. pass to template in context dict
 
     num_products = 11#len(product_list)
@@ -71,30 +71,35 @@ def pass_to_inkling(request):
                  "partnerTransactionId": "..."
              }
         }
-        new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title='whatever',
-                                           success_or_fail='test', details='none')
-        new_log_entry.save()
 
         titles = inkling_tools.get_list_of_titles()
-         #TODO: log here
+
         response_data = inkling_tools.post('/purchases', data)
+
+        user_details = ''
+        logging_details = ''
+        success_or_fail = ''
+        if response_data['status']['statusCode'] == 'DuplicatePurchase':
+            user_details = 'According to our records, you have already purchased this book. Contact blah blah blah ' \
+                           'if you think this to be an error.'
+            logging_details = 'Duplicate purchase.'
+            success_or_fail = 'fail'
+
+        print(response_data['status'])
+
+        #TODO:USER display object
+        display_dict = {'user_details': user_details}
+
+        if first_name != '' and last_name != '' and email != '':
+            new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title='whatever',
+                                               success_or_fail=success_or_fail, details=logging_details)
+            new_log_entry.save()
 
         json_data = json.dumps(response_data)
 
 
         #TODO: here we go: also remove json.dumps i think
 
-        # if form_errors['first_name'] or form.errors['last_name'] or form.errors['cnm_email']:
-        #     errors = {
-        #         "firstNameErrors": form.errors['first_name'],
-        #         "lastNameErrors": form.errors['last_name'],
-        #         "email": form.errors['cnm_email']
-        #     }
-        #     print('error response')
-        #     return HttpResponse(
-        #         json.dumps(errors)
-        #     )
-        # else:
         print('resposne')
         return HttpResponse(
             json.dumps(json_data),

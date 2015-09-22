@@ -11,9 +11,9 @@ class TouchnetTransactionAdmin(admin.ModelAdmin):
 
 
 class InklingTransactionAdmin(admin.ModelAdmin):
-    readonly_fields = fields = ['user_id', 'title', 'success_or_fail', 'details']
+    readonly_fields = fields = ['user_id', 'first_name', 'last_name', 'title', 'success_or_fail', 'details']
    # fields = ['user_id', 'title', 'success_or_fail', 'details']
-    list_display = ('date_created', 'user_id', 'title', 'success_or_fail', 'details')
+    list_display = ('date_created', 'user_id', 'first_name', 'last_name', 'title', 'success_or_fail', 'details')
     search_fields = ['date_created', 'user_id']
 
 admin.site.register(TouchnetTransaction, TouchnetTransactionAdmin)
