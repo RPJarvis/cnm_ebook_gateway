@@ -36,10 +36,10 @@
                 <td>&nbsp;</td>
             {% endif %}
 
-            {% if model.admin_url %}
-                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+            {% if model.admin_url == '/admin/transaction_logging/inklingtransaction/' or model.admin_url == '/admin/transaction_logging/touchnettransaction/' %}
+                <td><a href="{{ model.admin_url }}">{% trans 'View' %}</a></td>
             {% else %}
-                <td>&nbsp;</td>
+                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
             {% endif %}
             </tr>
         {% endfor %}
