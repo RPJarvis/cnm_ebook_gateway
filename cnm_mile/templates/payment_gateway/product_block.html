@@ -8,9 +8,14 @@
            <div class="col-md-2">
                 <img src="{{ product.cover_image.url }}" class="cover-image"/>
                 <br>
-                <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">{{ product.title }}</a>
-                by
+                <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';
+                    document.getElementById('fade').style.display='block'">{{ product.title }}
+                </a>
+                <br>
                 {{ product.author }}
+                <br>
+                Available to:
+                {{ product.availability }}
                 <br>
                 {{ product.price }}
                 <br>
@@ -19,7 +24,9 @@
             </div>
         {% endfor %}
         <div id="light" class="white_content">This is the lightbox content.
-            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';
+                document.getElementById('fade').style.display='none'">Close
+            </a>
         </div>
         <div id="fade" class="black_overlay"></div>
     <div class="col-md-2"></div>

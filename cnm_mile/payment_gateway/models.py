@@ -19,6 +19,7 @@ class Product(models.Model):
     author = models.CharField(verbose_name="Author", max_length=40)
     cover_image = models.ImageField(verbose_name="Cover Image")
     price = models.FloatField(verbose_name="Price", max_length=5)
+    availability = models.CharField(verbose_name="Availability", max_length=20)
     description = models.TextField(verbose_name="Description", max_length=240)
     inkling_product_id = models.CharField(verbose_name="Inkling Product ID", max_length=15)
 

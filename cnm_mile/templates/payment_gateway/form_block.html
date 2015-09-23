@@ -16,7 +16,7 @@
         {% endif %}
         <form action="/pass_to_inkling/" method="post" id="user_form">
             {% csrf_token %}
-                        {%  for field in form.visible_fields %}
+            {%  for field in form.visible_fields %}
                 <div class="field-container">
                     {{ field.label }}
                     <br />
@@ -25,6 +25,7 @@
                     {{ field.errors }}
                 </div>
             {% endfor %}
+            <br/>
             <input type="submit" value="test inkling post" role="button">
         </form>
         <img src="/static/images/ajaxloader.gif" id="loading_image">

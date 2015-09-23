@@ -4,6 +4,6 @@ from .models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ['title', 'author', 'price', 'inkling_product_id', 'cover_image', 'description']
+    fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'description']
 
 admin.site.register(Product, ProductAdmin)
