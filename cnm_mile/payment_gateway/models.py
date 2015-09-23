@@ -1,5 +1,5 @@
 from django.db import models
-#from forms import choice_list
+
 from django.core.validators import validate_email
 
 
@@ -7,7 +7,7 @@ class UserInfo(models.Model):
     first_name = models.CharField(verbose_name="First Name", max_length=40)
     last_name = models.CharField(verbose_name="Last Name", max_length=40)
     cnm_email = models.EmailField(verbose_name="CNM Email", max_length=40)
-    #book_choice = models.CharField(choices=choice_list)
+    book_choice = models.CharField(verbose_name="Book Choice", max_length=40)
 
 
     def __str__(self):

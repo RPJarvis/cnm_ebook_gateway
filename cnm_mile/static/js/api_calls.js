@@ -68,7 +68,8 @@ $(document).ready(function(){
             data: {
                 first_name: $('#id_first_name').val(),
                 last_name: $('#id_last_name').val(),
-                cnm_email: $('#id_cnm_email').val()
+                cnm_email: $('#id_cnm_email').val(),
+                book_choice: $('#id_book_choice').val()
             },
             //TODO: success and error
 
@@ -76,19 +77,8 @@ $(document).ready(function(){
             success: function(json){
                 console.log(json);
                 //TODO:conditional here to redisplay form on error??
-                //result_obj = JSON.parse(json);
-                //console.log(result_obj);
-                //console.log(result_obj['email'][0]);
-
                 $('#loading_image').hide();
-               // $('#messages').clear();
-                $('#messages').prepend("<h1>Results here:</1>");
-                $('#messages').append(json);
-
-                //{"info": {},
-                // "status": {"statusMsg": "Schema validation failed.",
-                // "statusDetails": {"resource": "Purchase", "error": "Value u'' for field 'firstName' cannot be blank"},
-                // "statusCode": "SchemaValidationError"}, "result": {}}
+                $('#messages').empty().prepend("<h1>Results here:</1>").append(json);
             },
 
             error: function(json){

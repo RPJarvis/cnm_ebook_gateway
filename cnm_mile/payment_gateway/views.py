@@ -57,6 +57,9 @@ def pass_to_inkling(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('cnm_email')
+        book_choice = request.POST.get('book_choice')
+        print('book choice: ')
+        print(book_choice.__str__())
 
         data = {
              "email": email,
@@ -85,13 +88,11 @@ def pass_to_inkling(request):
             logging_details = 'Duplicate purchase.'
             success_or_fail = 'fail'
 
-        print(response_data['status'])
-
         #TODO:USER display object
         display_dict = {'user_details': user_details}
 
         if first_name != '' and last_name != '' and email != '':
-            new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title='whatever',
+            new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title=book_choice,
                                                success_or_fail=success_or_fail, details=logging_details)
             new_log_entry.save()
 
