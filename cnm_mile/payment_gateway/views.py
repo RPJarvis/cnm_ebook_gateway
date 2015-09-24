@@ -82,19 +82,24 @@ def pass_to_inkling(request):
         user_details = ''
         logging_details = ''
         success_or_fail = ''
-        if response_data['status']['statusCode'] == 'DuplicatePurchase':
+        if response_data['status']['statusCode'] == 'HTTPCreated':
+            user_details = 'Thank you for your purchase, {}. Your copy of {} has been provisioned. An email has been ' \
+                           'sent to {} with instructions for accessing your book'.format(first_name, book_choice, email)
+            logging_details = 'Successfully Provisioned.'
+            success_or_fail = 'success'
+        elif response_data['status']['statusCode'] == 'DuplicatePurchase':
             user_details = 'According to our records, you have already purchased this book. Contact blah blah blah ' \
                            'if you think this to be an error.'
             logging_details = 'Duplicate purchase.'
             success_or_fail = 'fail'
 
-        #TODO:USER display object
-        display_dict = {'user_details': user_details}
-
         if first_name != '' and last_name != '' and email != '':
             new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title=book_choice,
                                                success_or_fail=success_or_fail, details=logging_details)
             new_log_entry.save()
+
+        #TODO:USER display object
+        display_dict = {'user_details': user_details}
 
         json_data = json.dumps(response_data)
 
