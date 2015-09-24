@@ -71,26 +71,37 @@ $(document).ready(function(){
                 cnm_email: $('#id_cnm_email').val(),
                 book_choice: $('#id_book_choice').val()
             },
-            //TODO: success and error
-
 
             success: function(json){
                 console.log(json);
                 //TODO:conditional here to redisplay form on error??
                 $('#loading_image').hide();
-                $('#messages').empty().prepend("<h1>Results here:</1>").append(json);
+                if(json['status']['statusCode'] != "SchemaValidationError"){
+                    $('#user_form').hide();
+                    $('#messages').empty().prepend("<h1>Results here:</1>").append(json['display_dict']['user_details']);
+                }
+                else{
+                    $('#user_form').show();
+                    $('#messages').empty().prepend("<h1>Results here:</1>").append(json['display_dict']['user_details']);
+                }
+
+
+                console.log(typeof(json));
+                console.log(json['display_dict']['user_details']);
             },
 
             error: function(json){
                 console.log('error');
                 $('#loading_image').hide();
+                $('#messages').append("this is an error message");
                 $('#messages').append(json);
+
             }
         });
     }
     $('#user_form').on('submit', function(event){
         event.preventDefault();
-        //$('#user_form').hide();
+        $('#user_form').hide();
         $('#loading_image').show();
         console.log('can is ee this?');
         passToInkling();

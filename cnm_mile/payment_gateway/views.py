@@ -92,6 +92,14 @@ def pass_to_inkling(request):
                            'if you think this to be an error.'
             logging_details = 'Duplicate purchase.'
             success_or_fail = 'fail'
+        elif response_data['status']['statusCode'] == 'SchemaValidationError':
+            user_details = 'Please fill in all form fields'
+            logging_details = 'Missing one or more fields'
+            success_or_fail = 'fail'
+        else:
+            user_details = 'Connection error'
+            logging_details = 'Connection error'
+            success_or_fail = 'fail'
 
         if first_name != '' and last_name != '' and email != '':
             new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title=book_choice,
@@ -100,14 +108,18 @@ def pass_to_inkling(request):
 
         #TODO:USER display object
         display_dict = {'user_details': user_details}
+        response_data['display_dict'] = display_dict
+        print(type(response_data))
+        #json_data = json.dumps(response_data)
 
-        json_data = json.dumps(response_data)
+        #print(type(json_data))
 
-
+        #print(json.loads(response_data))
         #TODO: here we go: also remove json.dumps i think
 
         print('resposne')
         return HttpResponse(
-            json.dumps(json_data),
+            #json.dumps(json_data),
+            json.dumps(response_data),
             content_type="application/json"
         )
