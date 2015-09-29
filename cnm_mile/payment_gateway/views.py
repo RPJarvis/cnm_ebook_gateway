@@ -47,6 +47,7 @@ def pass_to_touchnet(request):
 
 def pass_to_inkling(request):
     context = RequestContext(request)
+
     if request.method == 'POST':
         form = forms.UserInfoForm(request.POST)
         form_errors = form.errors.as_data()
@@ -58,12 +59,11 @@ def pass_to_inkling(request):
         last_name = request.POST.get('last_name')
         email = request.POST.get('cnm_email')
         book_choice = request.POST.get('book_choice')
-        print('book choice: ')
-        print(book_choice.__str__())
-
+        product_id = get_product_id(book_choice)
+        print(product_id)
         data = {
              "email": email,
-             "productId": "0f6ae180718a48debdf0a12630ff647e",
+             "productId": product_id,
              "firstName": first_name,
              "lastName": last_name,
              "receiveEmail": True,
@@ -76,9 +76,9 @@ def pass_to_inkling(request):
         }
 
         titles = inkling_tools.get_list_of_titles()
-
+        print(titles)
         response_data = inkling_tools.post('/purchases', data)
-
+        print(response_data)
         user_details = ''
         logging_details = ''
         success_or_fail = ''
@@ -110,16 +110,17 @@ def pass_to_inkling(request):
         display_dict = {'user_details': user_details}
         response_data['display_dict'] = display_dict
         print(type(response_data))
-        #json_data = json.dumps(response_data)
 
-        #print(type(json_data))
-
-        #print(json.loads(response_data))
-        #TODO: here we go: also remove json.dumps i think
-
-        print('resposne')
         return HttpResponse(
             #json.dumps(json_data),
             json.dumps(response_data),
             content_type="application/json"
         )
+
+
+
+def get_product_id(title):
+    product = Product.objects.filter(title=title)
+    product_id = product[0].inkling_product_id
+
+    return product_id
