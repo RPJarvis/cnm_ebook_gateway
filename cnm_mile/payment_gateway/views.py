@@ -51,16 +51,13 @@ def pass_to_inkling(request):
     if request.method == 'POST':
         form = forms.UserInfoForm(request.POST)
         form_errors = form.errors.as_data()
-        print('form errors')
-        print(form_errors)
-        #print(form.is_valid())
 
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('cnm_email')
         book_choice = request.POST.get('book_choice')
         product_id = get_product_id(book_choice)
-        print(product_id)
+
         data = {
              "email": email,
              "productId": product_id,
@@ -76,9 +73,9 @@ def pass_to_inkling(request):
         }
 
         titles = inkling_tools.get_list_of_titles()
-        print(titles)
+
         response_data = inkling_tools.post('/purchases', data)
-        print(response_data)
+
         user_details = ''
         logging_details = ''
         success_or_fail = ''
@@ -109,10 +106,8 @@ def pass_to_inkling(request):
         #TODO:USER display object
         display_dict = {'user_details': user_details}
         response_data['display_dict'] = display_dict
-        print(type(response_data))
 
         return HttpResponse(
-            #json.dumps(json_data),
             json.dumps(response_data),
             content_type="application/json"
         )
