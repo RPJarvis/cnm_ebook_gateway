@@ -76,9 +76,12 @@ def pass_to_inkling(request):
 
         response_data = inkling_tools.post('/purchases', data)
         print(response_data)
+
+        #TODO: ENCAPSULATE THIS
         user_details = ''
         logging_details = ''
         success_or_fail = ''
+        type = 'customer'
         if response_data['status']['statusCode'] == 'HTTPCreated':
             user_details = 'Thank you for your purchase, {}. Your copy of {} has been provisioned. An email has been ' \
                            'sent to {} with instructions for accessing your book'.format(first_name, book_choice, email)
@@ -99,7 +102,7 @@ def pass_to_inkling(request):
             success_or_fail = 'fail'
 
         if first_name != '' and last_name != '' and email != '':
-            new_log_entry = InklingTransaction(user_id=email, first_name=first_name, last_name=last_name, title=book_choice,
+            new_log_entry = InklingTransaction(user_id=email, type=type, first_name=first_name, last_name=last_name, title=book_choice,
                                                success_or_fail=success_or_fail, details=logging_details)
             new_log_entry.save()
 

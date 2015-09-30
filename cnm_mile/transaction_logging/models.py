@@ -18,6 +18,7 @@ class TouchnetTransaction(models.Model):
 
 class InklingTransaction(models.Model):
     date_created = models.DateTimeField(auto_now=True)
+    type = models.CharField(max_length=12)
     user_id = models.EmailField()
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)

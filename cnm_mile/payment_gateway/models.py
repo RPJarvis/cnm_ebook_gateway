@@ -74,10 +74,33 @@ def bulk_upload():
              }
         }
         print(data)
-        #response_data = inkling_tools.post('/purchases', data)
+        response_data = inkling_tools.post('/purchases', data)
         #TODO: STRUCTURE THE RESPONSE DATA
+        user_details = ''
+        logging_details = ''
+        success_or_fail = ''
+        type = 'bulk'
+        if response_data['status']['statusCode'] == 'HTTPCreated':
+            user_details = 'Thank you for your purchase, {}. Your copy of {} has been provisioned. An email has been ' \
+                           'sent to {} with instructions for accessing your book'.format(first_name, book_choice, email)
+            logging_details = 'Successfully Provisioned.'
+            success_or_fail = 'success'
+        elif response_data['status']['statusCode'] == 'DuplicatePurchase':
+            user_details = 'According to our records, you have already purchased this book. Contact blah blah blah ' \
+                           'if you think this to be an error.'
+            logging_details = 'Duplicate purchase.'
+            success_or_fail = 'fail'
+        elif response_data['status']['statusCode'] == 'SchemaValidationError':
+            user_details = 'Please fill in all form fields'
+            logging_details = 'Missing one or more fields'
+            success_or_fail = 'fail'
+        else:
+            user_details = 'Connection error'
+            logging_details = 'Connection error'
+            success_or_fail = 'fail'
 
 
 
         result_data.append('stuff')
+
 
