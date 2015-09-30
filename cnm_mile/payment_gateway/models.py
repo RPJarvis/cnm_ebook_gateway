@@ -1,5 +1,5 @@
 from django.db import models
-
+from payment_gateway import inkling_tools
 from django.core.validators import validate_email
 
 
@@ -42,18 +42,17 @@ class BulkUpload(models.Model):
 
 
 input_file_name = 'test_for_now.txt'
-input = open(input_file_name, 'r')
 
 user_data = []
 
-#read line
-current_line = input.readline()
-current_user = current_line.split(',')
-print(type(current_user))
-user_data.append(current_user)
-print(user_data[0])
+#TRY CATCH THIS SHIT
+with open(input_file_name, 'r') as file:
+    for line in file:
+        #user is a list
+        user = line.split(',')
+        user_data.append(user)
 
-input.close()
+result_data = []
 for student in user_data:
     first_name = student[0]
     print(first_name)
@@ -74,3 +73,7 @@ for student in user_data:
              "partnerTransactionId": "..."
          }
     }
+    response_data = inkling_tools.post('/purchases', data)
+
+    result_data.append()
+file.close()
