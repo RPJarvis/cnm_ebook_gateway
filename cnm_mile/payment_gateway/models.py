@@ -99,8 +99,6 @@ def bulk_upload():
             logging_details = 'Connection error'
             success_or_fail = 'fail'
 
-
-
         result_data.append('stuff')
 
 
