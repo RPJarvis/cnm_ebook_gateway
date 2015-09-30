@@ -9,7 +9,6 @@ class UserInfo(models.Model):
     cnm_email = models.EmailField(verbose_name="CNM Email", max_length=40)
     book_choice = models.CharField(verbose_name="Book Choice", max_length=40)
 
-
     def __str__(self):
         return self.cnm_email
 
@@ -23,7 +22,55 @@ class Product(models.Model):
     description = models.TextField(verbose_name="Description", max_length=240)
     inkling_product_id = models.CharField(verbose_name="Inkling Product ID", max_length=40)
 
-
     def __str__(self):
         return self.title
     #probably need isbns and junk here
+
+class BulkUpload(models.Model):
+    first_names = models.TextField(verbose_name="First Names")
+    last_names = models.TextField(verbose_name="Last Names")
+    emails = models.TextField(verbose_name="Emails")
+
+ #   def inkling_bulk(self):
+
+
+
+###FORMAT NEEDS TO BE THIS:
+#last name, first name, email
+###
+
+
+
+input_file_name = 'test_for_now.txt'
+input = open(input_file_name, 'r')
+
+user_data = []
+
+#read line
+current_line = input.readline()
+current_user = current_line.split(',')
+print(type(current_user))
+user_data.append(current_user)
+print(user_data[0])
+
+input.close()
+for student in user_data:
+    first_name = student[0]
+    print(first_name)
+    last_name = student[1]
+    print(last_name)
+    email = student[2]
+    print(email)
+    data = {
+         "email": email,
+         "productId": product_id,
+         "firstName": first_name,
+         "lastName": last_name,
+         "receiveEmail": True,
+         "checkoutAmount": 1000,
+         "partnerInfo": {
+             "partnerSiteId": "...",
+             "partnerPermaItemUrl": "...",
+             "partnerTransactionId": "..."
+         }
+    }

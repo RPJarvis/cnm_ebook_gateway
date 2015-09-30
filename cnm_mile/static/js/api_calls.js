@@ -27,7 +27,6 @@ $(document).ready(function(){
                 cnm_email : $('#id_cnm_email').val()
 
             }
-            //TODO: success and error
         })
     }
 

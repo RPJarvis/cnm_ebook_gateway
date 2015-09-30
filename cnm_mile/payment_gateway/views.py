@@ -58,19 +58,7 @@ def pass_to_inkling(request):
         book_choice = request.POST.get('book_choice')
         product_id = get_product_id(book_choice)
 
-        data = {
-             "email": email,
-             "productId": product_id,
-             "firstName": first_name,
-             "lastName": last_name,
-             "receiveEmail": True,
-             "checkoutAmount": 1000,
-             "partnerInfo": {
-                 "partnerSiteId": "...",
-                 "partnerPermaItemUrl": "...",
-                 "partnerTransactionId": "..."
-             }
-        }
+
 
         titles = inkling_tools.get_list_of_titles()
 
@@ -111,8 +99,6 @@ def pass_to_inkling(request):
             json.dumps(response_data),
             content_type="application/json"
         )
-
-
 
 def get_product_id(title):
     product = Product.objects.filter(title=title)
