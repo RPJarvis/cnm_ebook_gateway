@@ -49,7 +49,7 @@ def bulk_upload():
     with open(input_file_name, 'r') as file:
         for line in file:
             #user is a list
-            user = line.split(',')
+            user = line.replace(" ", "").replace("\n", "").split(',')
             user_data.append(user)
 
     result_data = []
@@ -73,7 +73,11 @@ def bulk_upload():
                  "partnerTransactionId": "..."
              }
         }
-        response_data = inkling_tools.post('/purchases', data)
+        print(data)
+        #response_data = inkling_tools.post('/purchases', data)
+        #TODO: STRUCTURE THE RESPONSE DATA
+
+
 
         result_data.append('stuff')
-    file.close()
+

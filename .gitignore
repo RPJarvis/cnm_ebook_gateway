@@ -5,3 +5,5 @@
 *.jpeg
 gateway_config.py
 inkling_tools.py
+test_for_now.txt
+bulktest.py

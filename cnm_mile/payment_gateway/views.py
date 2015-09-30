@@ -75,7 +75,7 @@ def pass_to_inkling(request):
         titles = inkling_tools.get_list_of_titles()
 
         response_data = inkling_tools.post('/purchases', data)
-
+        print(response_data)
         user_details = ''
         logging_details = ''
         success_or_fail = ''
