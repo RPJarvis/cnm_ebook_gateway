@@ -40,40 +40,40 @@ class BulkUpload(models.Model):
 ###
 
 
+def bulk_upload():
+    input_file_name = 'test_for_now.txt'
 
-input_file_name = 'test_for_now.txt'
+    user_data = []
 
-user_data = []
+    #TRY CATCH THIS SHIT
+    with open(input_file_name, 'r') as file:
+        for line in file:
+            #user is a list
+            user = line.split(',')
+            user_data.append(user)
 
-#TRY CATCH THIS SHIT
-with open(input_file_name, 'r') as file:
-    for line in file:
-        #user is a list
-        user = line.split(',')
-        user_data.append(user)
+    result_data = []
+    for student in user_data:
+        first_name = student[0]
+        print(first_name)
+        last_name = student[1]
+        print(last_name)
+        email = student[2]
+        print(email)
+        data = {
+             "email": email,
+            # "productId": product_id,
+             "firstName": first_name,
+             "lastName": last_name,
+             "receiveEmail": True,
+             "checkoutAmount": 1000,
+             "partnerInfo": {
+                 "partnerSiteId": "...",
+                 "partnerPermaItemUrl": "...",
+                 "partnerTransactionId": "..."
+             }
+        }
+        response_data = inkling_tools.post('/purchases', data)
 
-result_data = []
-for student in user_data:
-    first_name = student[0]
-    print(first_name)
-    last_name = student[1]
-    print(last_name)
-    email = student[2]
-    print(email)
-    data = {
-         "email": email,
-         "productId": product_id,
-         "firstName": first_name,
-         "lastName": last_name,
-         "receiveEmail": True,
-         "checkoutAmount": 1000,
-         "partnerInfo": {
-             "partnerSiteId": "...",
-             "partnerPermaItemUrl": "...",
-             "partnerTransactionId": "..."
-         }
-    }
-    response_data = inkling_tools.post('/purchases', data)
-
-    result_data.append()
-file.close()
+        result_data.append('stuff')
+    file.close()
