@@ -27,5 +27,7 @@ class InklingTransactionAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
+admin.site.disable_action('delete_selected')
 admin.site.register(TouchnetTransaction, TouchnetTransactionAdmin)
 admin.site.register(InklingTransaction, InklingTransactionAdmin)
