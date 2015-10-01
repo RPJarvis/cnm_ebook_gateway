@@ -75,7 +75,6 @@ def pass_to_inkling(request):
         titles = inkling_tools.get_list_of_titles()
 
         response_data = inkling_tools.post('/purchases', data)
-        print(response_data)
 
         #TODO: ENCAPSULATE THIS
         user_details = ''
