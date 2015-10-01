@@ -27,8 +27,6 @@ def index(request):
     else:
         num_rows = (num_products/3) + 1
 
-   # num_rows = math.ceil(num_products / 3)
-
     print(num_rows)
 
     context_dict = {'form': form, 'product_list': product_list, 'form_errors': form_errors}
@@ -113,6 +111,7 @@ def pass_to_inkling(request):
             json.dumps(response_data),
             content_type="application/json"
         )
+
 
 def get_product_id(title):
     product = Product.objects.filter(title=title)
