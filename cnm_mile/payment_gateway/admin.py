@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product, BulkUpload
 from transaction_logging.models import InklingTransaction
 import inkling_tools
 
@@ -9,9 +9,11 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 
-###FORMAT NEEDS TO BE THIS:
-#last name, first name, email
-###
+
+class BulkUploadAdmin(admin.ModelAdmin):
+    fields = ['csv_file']
+
+admin.site.register(BulkUpload, BulkUploadAdmin)
 
 
 def bulk_upload():
