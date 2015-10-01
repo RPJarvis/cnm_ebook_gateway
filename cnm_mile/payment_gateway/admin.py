@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Product
 from transaction_logging.models import InklingTransaction
-# Register your models here.
+import inkling_tools
 
 
 class ProductAdmin(admin.ModelAdmin):

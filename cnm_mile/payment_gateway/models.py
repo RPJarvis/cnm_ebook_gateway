@@ -1,8 +1,5 @@
 from django.db import models
-from payment_gateway import inkling_tools
 from transaction_logging.models import InklingTransaction
-from django.core.validators import validate_email
-
 
 class UserInfo(models.Model):
     first_name = models.CharField(verbose_name="First Name", max_length=40)
@@ -10,7 +7,7 @@ class UserInfo(models.Model):
     cnm_email = models.EmailField(verbose_name="CNM Email", max_length=40)
     book_choice = models.CharField(verbose_name="Book Choice", max_length=40)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.cnm_email
 
 
@@ -23,17 +20,15 @@ class Product(models.Model):
     description = models.TextField(verbose_name="Description", max_length=240)
     inkling_product_id = models.CharField(verbose_name="Inkling Product ID", max_length=40)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
-    #probably need isbns and junk here
+
 
 class BulkUpload(models.Model):
-    first_names = models.TextField(verbose_name="First Names")
-    last_names = models.TextField(verbose_name="Last Names")
-    emails = models.TextField(verbose_name="Emails")
+    csv_file = models.FileField(verbose_name='CSV File')
 
- #   def inkling_bulk(self):
-
+    def __unicode__(self):
+        return self.csv_file
 
 
 
