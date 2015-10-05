@@ -1,7 +1,10 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify %}
 
-{% block extrahead %}{{ block.super }}
+{% block extrahead %}
+    <script src="{% static "js/jquery-2.1.1.js" %}"></script>
+    <script src="{% static "js/api_calls.js" %}"></script>
+    {{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {{ media }}
 {% endblock %}
@@ -54,7 +57,7 @@
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}
     <p>is this where the button gpoes?</p>
-    <button type="button" name="button" >Begin Bulk Provision</button>
+    <input type="button" name="button" id="bulk_upload_btn">Begin Bulk Provision</input>
 {% endblock %}
 
 {% block after_field_sets %}{% endblock %}

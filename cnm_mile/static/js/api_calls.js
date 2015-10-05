@@ -83,10 +83,6 @@ $(document).ready(function(){
                     $('#user_form').show();
                     $('#messages').empty().prepend("<h1>Results here:</1>").append(json['display_dict']['user_details']);
                 }
-
-
-                console.log(typeof(json));
-                console.log(json['display_dict']['user_details']);
             },
 
             error: function(json){
@@ -94,8 +90,29 @@ $(document).ready(function(){
                 $('#loading_image').hide();
                 $('#messages').append("this is an error message");
                 $('#messages').append(json);
-
             }
+        });
+    }
+
+    function bulkUpload(){
+        console.log('bulkUpload function called');
+        $.ajax({
+            //does this have to call a view or can it call a function?? probably a view.
+            url: "/bulk_upload/",
+            type: "POST",
+            data: {
+                csv_file: $('#id_csv_file')
+            },
+
+            success: function(){
+                console.log("bulkUpload success function");
+            },
+
+            error: function(){
+                //redirect back??
+                console.log("bulkUpload error called");
+            }
+
         });
     }
     $('#user_form').on('submit', function(event){
@@ -104,6 +121,12 @@ $(document).ready(function(){
         $('#loading_image').show();
         console.log('can is ee this?');
         passToInkling();
+    });
+
+    $('#bulk_upload_btn').on('click', function(event){
+        event.preventDefault();
+        console.log('bulk button clicked');
+        bulkUpload();
     });
 
 });

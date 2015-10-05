@@ -4,10 +4,12 @@ $(document).ready(function(){
     }).bind('ajaxStop', function(){
         $(this).hide();
     });
+
     function csrfSafeMethod(method) {
             // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
         }
+
     function passToTouchnet(){
         //open in new window UPAY_SITE_ID=1
         $.ajaxSetup({
@@ -32,22 +34,24 @@ $(document).ready(function(){
     }
 
 
- function passToInkling(){
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie != '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = jQuery.trim(cookies[i]);
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
             }
-                return cookieValue;
         }
+        return cookieValue;
+    }
+
+    function passToInkling(){
+
         var csrftoken = getCookie('csrftoken');
 
         function csrfSafeMethod(method) {
@@ -74,7 +78,7 @@ $(document).ready(function(){
             //TODO: success and error
 
 
-            success: function (json) {
+            success: function(json){
                 console.log(json);
                 console.log(json['firstNameErrors'][0]);
                 $('#messages').prepend("<tr><th>Name</th><th>Phone</th><th>Email</th><th>Title</th>" +
@@ -83,30 +87,23 @@ $(document).ready(function(){
             }
         });
     }
-/*
-inkling partner key: Partner Key: p-529864ffd7394252a900c4e2a4ba76a1
-  To inkling
-         {
-     "email": "john@gmail.com",
-     "productId": "3c9e50736eb549a5bc951bc100b630a2",
-     "firstName": "John",
-     "lastName": "Doe",
-     "receiveEmail": true,
-     "checkoutAmount": 1000,
-     "partnerInfo": {
-         "partnerSiteId": "...",
-         "partnerPermaItemUrl": "...",
-         "partnerTransactionId": "...",
-     }
- }*/
+
+    function bulkUpload(){
+        var csrftoken = getCookie('csrftoken');
+        console.log('bulk upload function called');
+        console.log(csrftoken)
+    }
+
     $('#user_form').on('submit', function(event){
         event.preventDefault();
         console.log('can is ee this?');
         passToInkling();
     });
 
+    $('#bulk_upload_btn').on('submit', function(event){
+        event.preventDefault();
+        console.log('bulk button clicked');
+        bulkUpload();
+    });
 });
 
-function displayInklingResult(json){
-
-}
