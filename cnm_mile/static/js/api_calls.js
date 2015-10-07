@@ -98,7 +98,7 @@ $(document).ready(function(){
         console.log('bulkUpload function called');
         $.ajax({
             //does this have to call a view or can it call a function?? probably a view.
-            url: "/bulk_upload/",
+            url: "/do_bulk_upload/",
             type: "POST",
             data: {
                 csv_file: $('#id_csv_file')

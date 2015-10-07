@@ -1,6 +1,7 @@
 from django.db import models
 from transaction_logging.models import InklingTransaction
 
+
 class UserInfo(models.Model):
     first_name = models.CharField(verbose_name="First Name", max_length=40)
     last_name = models.CharField(verbose_name="Last Name", max_length=40)
@@ -18,6 +19,7 @@ class Product(models.Model):
     price = models.FloatField(verbose_name="Price", max_length=5)
     availability = models.CharField(verbose_name="Availability", max_length=20)
     description = models.TextField(verbose_name="Description", max_length=240)
+    site_id = models.CharField(verbose_name="UPay Site ID", max_length=2, default=1)
     inkling_product_id = models.CharField(verbose_name="Inkling Product ID", max_length=40)
 
     def __unicode__(self):
@@ -29,6 +31,3 @@ class BulkUpload(models.Model):
 
     def __unicode__(self):
         return self.csv_file
-
-
-

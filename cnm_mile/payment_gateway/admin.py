@@ -17,11 +17,11 @@ class BulkUploadAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(BulkUploadAdmin, self).get_urls()
         my_urls = [
-            url(r'^bulk_upload/$', self.bulk_upload),
+            url(r'^do_bulk_upload/$', self.do_bulk_upload),
         ]
         return my_urls + urls
 
-    def bulk_upload(self, request):
+    def do_bulk_upload(self, request):
         input_file_name = 'test_for_now.txt'
 
         user_data = []

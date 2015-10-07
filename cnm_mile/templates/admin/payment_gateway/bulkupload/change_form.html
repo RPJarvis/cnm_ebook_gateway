@@ -57,7 +57,7 @@
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}
     <p>is this where the button gpoes?</p>
-    <input type="button" name="button" id="bulk_upload_btn">Begin Bulk Provision</input>
+    <input type="button" name="button" id="bulk_upload_btn" value="Begin Bulk Provision">
 {% endblock %}
 
 {% block after_field_sets %}{% endblock %}
@@ -85,7 +85,7 @@
                     showRelatedObjectLookupPopup(this);
                 });
             {% if adminform and add %}
-                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
+                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus();
             {% endif %}
             });
         })(django.jQuery);
