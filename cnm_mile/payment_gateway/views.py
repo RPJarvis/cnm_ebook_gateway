@@ -7,8 +7,10 @@ from transaction_logging import models
 import json
 import inkling_tools
 import math
+import gateway_config
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
+import requests
 # Create your views here.
 
 
@@ -40,7 +42,23 @@ def pass_to_touchnet(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('last_name')
+        book_choice = request.POST.get('book_choice')
+        full_name = first_name + ' ' + last_name
         #LOGGING SHOULD HAPPEN ON CALLBACK
+
+        upay_id = get_upay_id(book_choice)
+        url = gateway_config.touchnet_url + '?UPAY_SITE_ID=' + upay_id
+
+        payload = dict(UPAY_SITE_ID=upay_id, BILL_NAME=full_name, BILL_EMAIL_ADDRESS=email)
+
+        request = requests.post(url, payload)
+
+
+#payload = dict(UPAY_SITE_ID=1, BILL_NAME='ryan jarvis', BILL_EMAIL_ADDRESS='rjarvis1@cnm.edu')
+#>>> r = requests.post('http://httpbin.org/post', data=payload)
+
+        #open new window here or pass params in same window and try to pass back in same view?? probably seperate
+        # url/view for postback, set it as callback in touchnet
 
 
 def pass_to_inkling(request):
@@ -55,6 +73,10 @@ def pass_to_inkling(request):
         email = request.POST.get('cnm_email')
         book_choice = request.POST.get('book_choice')
         product_id = get_product_id(book_choice)
+
+        #Below is what we show your postback upay url.
+        #https://secure.touchnet.com/C20016_upay/ext_site_test.jsp
+        #https://secure.touchnet.com:8443/C20016test_upay/ext_site_test.jsp
 
         data = {
              "email": email,
@@ -99,8 +121,8 @@ def pass_to_inkling(request):
             success_or_fail = 'fail'
 
         if first_name != '' and last_name != '' and email != '':
-            new_log_entry = InklingTransaction(user_id=email, type=type, first_name=first_name, last_name=last_name, title=book_choice,
-                                               success_or_fail=success_or_fail, details=logging_details)
+            new_log_entry = InklingTransaction(user_id=email, type=type, first_name=first_name, last_name=last_name,
+                                               title=book_choice, success_or_fail=success_or_fail, details=logging_details)
             new_log_entry.save()
 
         display_dict = {'user_details': user_details}
@@ -114,10 +136,14 @@ def pass_to_inkling(request):
 
 def get_product_id(title):
     product = Product.objects.filter(title=title)
-    product_id = product[0].inkling_product_id
 
-    return product_id
+    return product[0].inkling_product_id
 
+
+def get_upay_id(title):
+    product = Product.objects.filter(title=title)
+
+    return product[0].site_id
 
 
 

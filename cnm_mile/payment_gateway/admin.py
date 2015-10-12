@@ -4,9 +4,11 @@ from transaction_logging.models import InklingTransaction
 import inkling_tools
 from django.conf.urls import url
 from payment_gateway.views import get_product_id
+import json
+
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'description']
+    fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'description', 'site_id']
 
 admin.site.register(Product, ProductAdmin)
 
@@ -37,15 +39,15 @@ class BulkUploadAdmin(admin.ModelAdmin):
         result_data = []
         for student in user_data:
             first_name = student[0]
-            print(first_name)
+
             last_name = student[1]
-            print(last_name)
+
             email = student[2]
             book_choice = 'PLACEHOLDER'
             print(email)
             data = {
                  "email": email,
-                # "productId": product_id,
+                "productId": product_id,
                  "firstName": first_name,
                  "lastName": last_name,
                  "receiveEmail": True,
@@ -83,7 +85,7 @@ class BulkUploadAdmin(admin.ModelAdmin):
             result_display = {'user': email, 'first_name': first_name, 'last_name': last_name, 'details': logging_details}
 
             result_data.append(result_display)
-        return
+        return json.dumps()
 
 
 admin.site.register(BulkUpload, BulkUploadAdmin)

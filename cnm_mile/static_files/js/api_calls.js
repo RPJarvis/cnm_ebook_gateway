@@ -75,7 +75,7 @@ $(document).ready(function(){
                 cnm_email: $('#id_cnm_email').val(),
                 book_choice: $('#id_book_choice').val()
             },
-            //TODO: success and error
+            //TODO:error
 
 
             success: function(json){
@@ -91,7 +91,27 @@ $(document).ready(function(){
     function bulkUpload(){
         var csrftoken = getCookie('csrftoken');
         console.log('bulk upload function called');
-        console.log(csrftoken)
+        console.log(csrftoken);
+
+        $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type)) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $.ajax({
+            url: "/admin/do_bulk_upload/" ,
+            type: "POST",
+            data: {
+                first_name: $('#id_first_name').val(),
+                last_name: $('#id_last_name').val(),
+                cnm_email: $('#id_cnm_email').val()
+            },
+
+        });
+
     }
 
     $('#user_form').on('submit', function(event){
