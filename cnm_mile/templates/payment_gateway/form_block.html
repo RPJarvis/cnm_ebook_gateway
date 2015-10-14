@@ -27,10 +27,28 @@
             {% endfor %}
             <br/>
             <input type="submit" value="test inkling post" role="button">
+
         </form>
         <img src="/static/images/ajaxloader.gif" id="loading_image">
     </div>
     <div class="col-md-2"></div>
 </div>
-<hr>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {% if message %}
+            <div class="message">
+                {{ message }}
+            </div>
+        {% endif %}
+        {% if display_email %}
+            {% for key, value in display_email.items %}
+                {{ key }}:  {{ value }} <br/>
+            {% endfor %}
+        {% endif %}
+ <input type="button" name="button" id="touchnet_post_btn" value="Begin touchnet post">
+        <img src="/static/images/ajaxloader.gif" id="loading_image">
+    </div>
+    <div class="col-md-2"></div>
+</div>
 {% endblock %}
