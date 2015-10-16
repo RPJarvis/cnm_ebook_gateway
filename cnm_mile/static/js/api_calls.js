@@ -56,9 +56,7 @@ $(document).ready(function(){
         });*/
     }
 
-
-    function passToInkling(){
-        function getCookie(name) {
+    function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {
                 var cookies = document.cookie.split(';');
@@ -73,6 +71,9 @@ $(document).ready(function(){
             }
                 return cookieValue;
         }
+
+    function passToInkling(){
+
         var csrftoken = getCookie('csrftoken');
 
         function csrfSafeMethod(method) {
@@ -134,10 +135,14 @@ $(document).ready(function(){
             }
         });
 
+        var data = new FormData($('#id_csv_file').get(0));
+        console.log(data);
         $.ajax({
             url: "/admin/do_bulk_upload/" ,
             type: "POST",
             data: {
+                'file': data
+
             },
             success: function(){
                 console.log('success');

@@ -2,9 +2,10 @@ from django.contrib import admin
 from .models import Product, BulkUpload
 from transaction_logging.models import InklingTransaction
 import inkling_tools
-from django.conf.urls import url
+from django.conf.urls import url, patterns
 from payment_gateway.views import get_product_id
 import json
+from functools import update_wrapper
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -16,22 +17,14 @@ admin.site.register(Product, ProductAdmin)
 class BulkUploadAdmin(admin.ModelAdmin):
     fields = ['csv_file']
 
-    def get_urls(self):
-        urls = super(BulkUploadAdmin, self).get_urls()
-        my_urls = [
-            url(r'^do_bulk_upload/$', self.do_bulk_upload),
-        ]
-        return my_urls + urls
-
     def do_bulk_upload(self, request):
-        input_file_name = 'test_for_now.txt'
-
+        print(request.FILES.get('file'))
         user_data = []
-
+        input_file = request.FILES.get('file')
         book_choice = 'PLACEHOLDER'
         product_id = get_product_id(book_choice)
         #TRY CATCH THIS SHIT
-        with open(input_file_name, 'r') as file:
+        with open(input_file, 'r') as file:
             for line in file:
                 user = line.replace(" ", "").replace("\n", "").split(',')
                 user_data.append(user)
@@ -84,5 +77,22 @@ class BulkUploadAdmin(admin.ModelAdmin):
             result_data.append(result_display)
         return json.dumps(result_data)
 
+
+    def get_urls(self):
+        urls = super(BulkUploadAdmin, self).get_urls()
+
+        def wrap(view):
+            def wrapper(*args, **kwargs):
+                 return self.admin_site.admin_view(view)(*args, **kwargs)
+            return update_wrapper(wrapper, view)
+        # my_urls = [
+        #     url(r'^do_bulk_upload/$', self.do_bulk_upload, name='bulk upload'),
+        # ]
+        custom_urls = patterns('',
+            url(r'^do_bulk_upload/$',
+                 wrap(self.do_bulk_upload),
+                 name='bulk',)
+        )
+        return custom_urls + urls
 
 admin.site.register(BulkUpload, BulkUploadAdmin)

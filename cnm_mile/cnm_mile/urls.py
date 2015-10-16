@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from transaction_logging import urls
+from payment_gateway import admin as bulkadmin
 
 urlpatterns = [
     url(r'^', include('payment_gateway.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('transaction_logging.urls'))
+    url(r'^', include('transaction_logging.urls')),
+    url(r'^admin/do_bulk_upload', bulkadmin.BulkUploadAdmin.do_bulk_upload, name='pass_to_inkling'),
+
 ]
 if settings.DEBUG:
     urlpatterns += patterns(
