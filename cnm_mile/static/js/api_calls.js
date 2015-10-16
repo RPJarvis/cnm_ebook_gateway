@@ -124,31 +124,28 @@ $(document).ready(function(){
     function bulkUpload(){
         var csrftoken = getCookie('csrftoken');
         console.log('bulk upload function called');
-        console.log(csrftoken);
 
         $.ajaxSetup({
             crossDomain: false, // obviates need for sameOrigin test
             beforeSend: function(xhr, settings) {
                 if (!csrfSafeMethod(settings.type)) {
                     xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                }
+                 }
             }
         });
 
-        var data = new FormData($('#id_csv_file').get(0));
-        console.log(data);
         $.ajax({
             url: "/admin/do_bulk_upload/" ,
             type: "POST",
             data: {
-                'file': data
-
+                data: $('#id_csv_field').val()
             },
             success: function(){
                 console.log('success');
             },
-            error: function(){
+            error: function(data){
                 console.log('fail');
+                console.log(data);
             }
         });
     }
@@ -169,7 +166,7 @@ $(document).ready(function(){
         event.preventDefault();
         $('#user_form').hide();
         $('#loading_image').show();
-        console.log('can is ee this?');
+        console.log('can i see this?');
         passToTouchnet();
         //call url from here?
     });

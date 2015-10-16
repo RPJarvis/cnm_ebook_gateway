@@ -27,7 +27,7 @@ class Product(models.Model):
 
 
 class BulkUpload(models.Model):
-    csv_file = models.FileField(verbose_name='CSV File')
+    csv_field = models.TextField(verbose_name="CSV Field")
 
     def __unicode__(self):
-        return self.csv_file
+        return 'CSV Field'

@@ -24,7 +24,9 @@ urlpatterns = [
     url(r'^', include('payment_gateway.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('transaction_logging.urls')),
-    url(r'^admin/do_bulk_upload', bulkadmin.BulkUploadAdmin.do_bulk_upload, name='pass_to_inkling'),
+    url(r'^admin/do_bulk_upload', bulkadmin.do_bulk_upload, name='bulk upload'),
+
+
 
 ]
 if settings.DEBUG:
@@ -35,3 +37,4 @@ if settings.DEBUG:
         {'document_root': settings.MEDIA_ROOT}), )
               #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #might not need the + static
+
