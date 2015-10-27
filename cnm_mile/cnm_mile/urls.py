@@ -25,10 +25,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('transaction_logging.urls')),
     url(r'^admin/do_bulk_upload', bulkadmin.do_bulk_upload, name='bulk upload'),
-
-
-
 ]
+
 if settings.DEBUG:
     urlpatterns += patterns(
         'django.views.static',

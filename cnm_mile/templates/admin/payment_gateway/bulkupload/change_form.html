@@ -56,8 +56,25 @@
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}
-    <p>is this where the button gpoes?</p>
+
+    <div id="messages"></div>
+
     <input type="button" name="button" id="bulk_upload_btn" value="Begin Bulk Provision">
+    <p>Data upload needs to be in the following format:
+        <br>
+          &nbsp &nbsp First Name, Last Name, Email;
+        <br>
+          First Name and Last Name must be followed by a comma, and email must be followed
+          by a semi-colon. One user per line.
+        <br>
+        For example:
+        <br>
+          &nbsp &nbsp Napoleon, Dynamite, ndynamite@cnm.edu;
+        <br>
+          &nbsp &nbsp Luke, Skywalker, lskywalker@rebelalliance.edu;
+        <br>
+          &nbsp &nbsp Homer, Simpson, hsimpson@springfield.edu;
+    </p>
 {% endblock %}
 
 {% block after_field_sets %}{% endblock %}
@@ -91,7 +108,9 @@
         })(django.jQuery);
     </script>
 {% endblock %}
-
+{% if result_data %}
+    {{ result_data }}
+{% endif %}
 {# JavaScript for prepopulated fields #}
 {% prepopulated_fields_js %}
 

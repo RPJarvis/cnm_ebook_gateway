@@ -130,7 +130,8 @@ $(document).ready(function(){
             beforeSend: function(xhr, settings) {
                 if (!csrfSafeMethod(settings.type)) {
                     xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                 }
+                }
+                $('#messages').append("Bulk provisioning in progress.");
             }
         });
 
@@ -138,13 +139,17 @@ $(document).ready(function(){
             url: "/admin/do_bulk_upload/" ,
             type: "POST",
             data: {
-                data: $('#id_csv_field').val()
+                data: $('#id_csv_field').val(),
+                book_choice: $('#id_book_choice').val()
             },
-            success: function(){
+            success: function(json){
                 console.log('success');
+                $('#messages').empty().append('data');
+                console.log(json);
+                $('#messages').append(json);
             },
             error: function(data){
-                console.log('fail');
+                $('#messages').empty().append('fail');
                 console.log(data);
             }
         });

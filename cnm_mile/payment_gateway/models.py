@@ -1,5 +1,6 @@
 from django.db import models
 from transaction_logging.models import InklingTransaction
+from django import forms
 
 
 class UserInfo(models.Model):
@@ -26,8 +27,16 @@ class Product(models.Model):
         return self.title
 
 
+bulk_choices = list()
+products = Product.objects.all()
+for product in products:
+    bulk_choices.append((product.title, product.title))
+
+
 class BulkUpload(models.Model):
     csv_field = models.TextField(verbose_name="CSV Field")
+    #book_choice = forms.ModelMultipleChoiceField(required=True, queryset=Product.objects.all())
+    book_choice = models.CharField(verbose_name="Book Choice", max_length=40, choices=bulk_choices)
 
     def __unicode__(self):
         return 'CSV Field'
