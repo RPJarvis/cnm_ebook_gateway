@@ -144,9 +144,13 @@ $(document).ready(function(){
             },
             success: function(json){
                 console.log('success');
-                $('#messages').empty().append('data');
-                console.log(json);
+                $('#messages').empty().append('Results:');
                 $('#messages').append(json);
+                var result_length = json.length;
+                for(i = 0; i < result_length; i++){
+                    $('#messages').append(String('<li>' + json[i]['first_name'] + ' ' + json[i]['last_name'] +
+                        ' ' + json[i]['user'] + ' ' + json[i]['details'] + '</a>'));
+                }
             },
             error: function(data){
                 $('#messages').empty().append('fail');

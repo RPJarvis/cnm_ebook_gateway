@@ -34,8 +34,6 @@ def do_bulk_upload(request):
     if request.method == 'POST':
         user_data = []
         data = str(request.POST.get('data'))
-        print(data)
-
         book_choice = request.POST.get('book_choice')
         print('########BOOK CHOICE########')
         print(book_choice)
@@ -46,11 +44,9 @@ def do_bulk_upload(request):
         print('########PRODUCT ID##########')
         print(product_id)
         user_string = ','.join(data.split(',')[:])
-        print(user_string)
         #while loop?
 
         users = data.replace("\n", "").strip(" ").split(';')
-        print(users)
         for person in users:
             if person != '':
                 user = person.strip(" ").replace(" ", "").split(',')
@@ -75,7 +71,7 @@ def do_bulk_upload(request):
                       "partnerTransactionId": "..."
                  }
             }
-            print(data)
+
             response_data = inkling_tools.post('/purchases', data)
              #TODO: STRUCTURE THE RESPONSE DATA
             user_details = ''
@@ -111,7 +107,6 @@ def do_bulk_upload(request):
             json.dumps(result_data),
             content_type="application/json"
         )
-
 
     def get_urls(self):
         urls = super(BulkUploadAdmin, self).get_urls()
