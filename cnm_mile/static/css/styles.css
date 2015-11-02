@@ -110,3 +110,15 @@ body {
     z-index:1002;
     overflow: auto;
 }
+
+.featured {
+    background-color: #269abc;
+}
+
+.form-block {
+    background-color: #5bc0de;
+}
+
+.product-list {
+    background-color: #3071a9;
+}

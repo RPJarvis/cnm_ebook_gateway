@@ -57,21 +57,21 @@
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}
-    <div id="messages"></div>
     <input type="button" name="button" id="bulk_upload_btn" value="Begin Bulk Provision">
-        <ul>
-            <li>Data upload needs to be in the following format:
-            <br>
-              &nbsp &nbsp First Name, Last Name, Email;</li>
-            <li>First Name and Last Name must be followed by a comma, and email must be followed
-              by a semi-colon. One user per line.</li>
+    <div id="messages"></div>
+    <ul>
+        <li>Data upload needs to be in the following format:
+        <br>
+          &nbsp &nbsp First Name, Last Name, Email;</li>
+        <li>First Name and Last Name must be followed by a comma, and email must be followed
+          by a semi-colon. One user per line.</li>
 
-            <li>For example:<br>
-              &nbsp &nbsp Napoleon, Dynamite, ndynamite@cnm.edu;<br>
-              &nbsp &nbsp Luke, Skywalker, lskywalker@rebelalliance.edu;<br>
-              &nbsp &nbsp Homer, Simpson, hsimpson@springfield.edu;
-            </li>
-        </ul>
+        <li>For example:<br>
+          &nbsp &nbsp Napoleon, Dynamite, ndynamite@cnm.edu;<br>
+          &nbsp &nbsp Luke, Skywalker, lskywalker@rebelalliance.edu;<br>
+          &nbsp &nbsp Homer, Simpson, hsimpson@springfield.edu;
+        </li>
+    </ul>
 {% endblock %}
 
 {% block after_field_sets %}{% endblock %}
@@ -111,6 +111,7 @@
 {# JavaScript for prepopulated fields #}
 {% prepopulated_fields_js %}
 
+    </div>
+</form>
 </div>
-</form></div>
 {% endblock %}

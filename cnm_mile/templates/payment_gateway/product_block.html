@@ -1,16 +1,25 @@
 
 {% block product_block %}
-
-<div class="row">
-    <h3 class="align_center">Product List</h3>
+<div class="row featured">
+    <div class="col-md-2"></div>
+        <div class="col-md-8 jumbotron">
+            <h5>Featured Item</h5>
+            <p>Featured Item Here? On launch, there will be only one book, which will obviously be the featured book
+            Later it will need to accomodate however many books, so some sort of list display will be necessary where maybe
+            user can click to open more info on that particular book.</p>
+        </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row product-list">
+    <h5>Product List</h5>
+    <p>Dummy product list that won't be there at launch but needs to be there for later</p>
     <div class="col-md-2"></div>
         {% for product in product_list %}
            <div class="col-md-2">
                 <img src="{{ product.cover_image.url }}" class="cover-image"/>
                 <br>
-                <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';
-                    document.getElementById('fade').style.display='block'">{{ product.title }}
-                </a>
+                {{ product.title }}
+
                 <br>
                 {{ product.author }}
                 <br>
@@ -23,12 +32,9 @@
                 <br>
             </div>
         {% endfor %}
-        <div id="light" class="white_content">This is the lightbox content.
-            <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';
-                document.getElementById('fade').style.display='none'">Close
-            </a>
-        </div>
-        <div id="fade" class="black_overlay"></div>
     <div class="col-md-2"></div>
 </div>
 {% endblock %}
+
+
+

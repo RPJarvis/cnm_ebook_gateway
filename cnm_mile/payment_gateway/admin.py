@@ -6,9 +6,7 @@ from django.conf.urls import url, patterns
 from payment_gateway.views import get_product_id
 import json
 from functools import update_wrapper
-from django.template import RequestContext
 from django.shortcuts import render_to_response, HttpResponse
-from django.middleware.csrf import get_token
 from django.template import RequestContext
 
 
