@@ -1,23 +1,23 @@
 
 {% block messages_block %}
-{% if form.errors %}
-    <div class="errors row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            {{ form.errors }}
-            {% if form.first_name.errors %}
-                First Name: {{ form.first_name.errors }}
-            {% endif %}
-            {% if form.last_name.errors %}
-                Last Name: {{ form.last_name.errors }}
-            {% endif %}
-            {% if form.cnm_email.errors %}
-                Email: {{ forms.cnm_email.errors }}
-            {% endif %}
-        </div>
-        <div class="col-md-2"></div>
+
+<div class="errors row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" id="errors">
+        {{ form.errors }}
+        {% if form.first_name.errors %}
+            First Name: {{ form.first_name.errors }}
+        {% endif %}
+        {% if form.last_name.errors %}
+            Last Name: {{ form.last_name.errors }}
+        {% endif %}
+        {% if form.cnm_email.errors %}
+            Email: {{ forms.cnm_email.errors }}
+        {% endif %}
     </div>
-{% endif %}
+    <div class="col-md-2"></div>
+</div>
+
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8" id="messages">

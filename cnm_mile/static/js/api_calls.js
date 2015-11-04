@@ -1,5 +1,42 @@
 $(document).ready(function(){
     var ajaxDBResponseData = 'bogus';
+
+    //this is the main workflow that calls the other functions. functino definitions below.
+    $('#main_submit').on('click', function(event){
+        event.preventDefault();
+        var error = '';
+        //checkFields();
+        $('#errors').empty();
+        var book = document.getElementById('id_book_choice');
+        try {
+            var title = book.options[book.selectedIndex].text;
+        }
+        catch(err){
+            error += 'Please select a book.'
+        }
+        var userEmail = $('#id_cnm_email').val();
+
+        var fieldsValid = false;
+        var edu_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu$/.test(userEmail);
+        console.log('regex check' + edu_email);
+        if(edu_email == false){
+            error += ' You must use a \".edu\" email address to purchase a book.';
+        }
+        if (title != '' && $('#id_first_name').val() != '' && $('#id_last_name').val() != '' && edu_email){
+            fieldsValid = true;
+        } else {
+            error += ' Please fill in all form fields.'
+        }
+        if(fieldsValid){
+            getPrice(title); //MIGHT BE WACKY
+            var price = ajaxDBResponseData['price'];
+            var site_id = ajaxDBResponseData['site_id'];
+            dispatch(title, price, site_id);
+        } else {
+            $('#errors').append(error);
+        }
+    });
+
     function csrfSafeMethod(method) {
             // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -38,7 +75,7 @@ $(document).ready(function(){
             }
         });
         $.ajax({
-            url: "/pass_to_inkling/", //django url
+            url: "/pass_to_inkling/",
             type: "POST",
             data: {
                 first_name: $('#id_first_name').val(),
@@ -114,23 +151,7 @@ $(document).ready(function(){
         bulkUpload();
     });
 
-    //1main_submit
-    $('#main_submit').on('click', function(event){
-        event.preventDefault();
-        var book = document.getElementById('id_book_choice');
-        var title = book.options[book.selectedIndex].text;
-        getPrice(title);
-
-        var price = ajaxDBResponseData['price'];
-        var site_id = ajaxDBResponseData['site_id'];
-        //upay_id = response[1];
-        console.log(price);
-        console.log(site_id);
-
-        dispatch(title, price, site_id);
-    });
-
-    //2
+    //1
     function dispatch(title, price, site_id){
         if(price > 0){
             passToTouchnet(price, site_id);
@@ -141,12 +162,11 @@ $(document).ready(function(){
         }
     }
 
-    //3
+    //2
     function passToTouchnet(price, site_id){
         console.log('pass to touchnet');
-        var upay_site_id = site_id;//go get it
         var base_url = "https:\/\/test.secure.touchnet.net:8443/C20016test_upay/web/index.jsp";
-        var final_url = base_url + '?UPAY_SITE_ID=' + upay_site_id;
+        var final_url = base_url + '?UPAY_SITE_ID=' + site_id;
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", final_url);
@@ -164,7 +184,7 @@ $(document).ready(function(){
         form.submit();
     }
 
-    //4
+    //3
     function receiveCallBack(){
         console.log('callback');
     }
