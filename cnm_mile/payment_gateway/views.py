@@ -20,66 +20,32 @@ def index(request):
     form = forms.UserInfoForm()
     form_errors = form.errors.as_data()
     product_list = Product.objects.all()
-    print(type(product_list))
-    #this shouldnt be necessary, use flexbox
 
-    num_products = 11#len(product_list)
-    if num_products % 4 == 0:
-        num_rows = num_products/4
-    else:
-        num_rows = (num_products/4) + 1
-
-    print(num_rows)
-
-    #The Mediocre Gatsby
-
-    context_dict = {'form': form, 'product_list': product_list, 'form_errors': form_errors, 'num_rows': num_rows}
+    #for product in product_list:
+     #   product.short_name = product.title.lower().replace(' ', '')
+      #  print(product.short_name)
+    context_dict = {'form': form, 'product_list': product_list, 'form_errors': form_errors}
 
     return render_to_response('payment_gateway/base.html', context_dict, context)
 
 
-#this should check for price then call wrapped pass to touchnet or pass to inkling
-def pass_to_touchnet(request):
+def get_price(request):
     if request.method == 'POST':
-        url = 'https://test.secure.touchnet.net:8443/C20016test_upay/web/index.jsp'
-        upay_site_id = request.POST.get('UPAY_SITE_ID')
+        title = request.POST.get('title')
+        print(title)
+        product = Product.objects.filter(title=title)
+        print(product[0].site_id)
+        site_id = product[0].site_id
+        price = product[0].price
+        print(price)
+        response = {'price': price, 'site_id': site_id}
 
-        data = {"UPAY_SITE_ID": upay_site_id}
-        requests.post(url, data)
-
-
-
-
-
-        # first_name = request.POST.get('first_name')
-        # last_name = request.POST.get('last_name')
-        # email = request.POST.get('last_name')
-        # book_choice = request.POST.get('book_choice')
-        # full_name = first_name + ' ' + last_name
-        #
-        # book_choice_query = Product.objects.get(title='The Mediocre Gatsby')
-        # price = book_choice_query.price
-        #
-        # if price = 0:
-        #     pass_to_inkling(request)
-        # else:
-        #     upay_id = get_upay_id(book_choice)
-        #     url = gateway_config.touchnet_url + '?UPAY_SITE_ID=' + upay_id
-        #
-        #     payload = dict(UPAY_SITE_ID=upay_id, BILL_NAME=full_name, BILL_EMAIL_ADDRESS=email)
-        #
-        #     request = requests.post(url, payload)
+        return HttpResponse(
+            json.dumps(response),
+            content_type="application/json"
+        )
 
 
-        #Below is what we show your postback upay url.
-        #https://secure.touchnet.com/C20016_upay/ext_site_test.jsp
-        #https://secure.touchnet.com:8443/C20016test_upay/ext_site_test.jsp
-
-#payload = dict(UPAY_SITE_ID=1, BILL_NAME='ryan jarvis', BILL_EMAIL_ADDRESS='rjarvis1@cnm.edu')
-#>>> r = requests.post('http://httpbin.org/post', data=payload)
-
-        #open new window here or pass params in same window and try to pass back in same view?? probably seperate
-        # url/view for postback, set it as callback in touchnet
 
 
 def pass_to_inkling(request):
@@ -151,6 +117,15 @@ def pass_to_inkling(request):
         )
 
 
+def postback(request):
+    if request.method == 'POST':
+
+        return render_to_response()
+
+
+
+
+
 def get_product_id(title):
     product = Product.objects.filter(title=title)
 
@@ -164,3 +139,45 @@ def get_upay_id(title):
 
 
 
+#this should check for price then call wrapped pass to touchnet or pass to inkling
+def pass_to_touchnet(request):
+    if request.method == 'POST':
+        url = 'https://test.secure.touchnet.net:8443/C20016test_upay/web/index.jsp'
+        upay_site_id = request.POST.get('UPAY_SITE_ID')
+
+        data = {"UPAY_SITE_ID": upay_site_id}
+        requests.post(url, data)
+
+
+
+
+
+        # first_name = request.POST.get('first_name')
+        # last_name = request.POST.get('last_name')
+        # email = request.POST.get('last_name')
+        # book_choice = request.POST.get('book_choice')
+        # full_name = first_name + ' ' + last_name
+        #
+        # book_choice_query = Product.objects.get(title='The Mediocre Gatsby')
+        # price = book_choice_query.price
+        #
+        # if price = 0:
+        #     pass_to_inkling(request)
+        # else:
+        #     upay_id = get_upay_id(book_choice)
+        #     url = gateway_config.touchnet_url + '?UPAY_SITE_ID=' + upay_id
+        #
+        #     payload = dict(UPAY_SITE_ID=upay_id, BILL_NAME=full_name, BILL_EMAIL_ADDRESS=email)
+        #
+        #     request = requests.post(url, payload)
+
+
+        #Below is what we show your postback upay url.
+        #https://secure.touchnet.com/C20016_upay/ext_site_test.jsp
+        #https://secure.touchnet.com:8443/C20016test_upay/ext_site_test.jsp
+
+#payload = dict(UPAY_SITE_ID=1, BILL_NAME='ryan jarvis', BILL_EMAIL_ADDRESS='rjarvis1@cnm.edu')
+#>>> r = requests.post('http://httpbin.org/post', data=payload)
+
+        #open new window here or pass params in same window and try to pass back in same view?? probably seperate
+        # url/view for postback, set it as callback in touchnet

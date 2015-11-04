@@ -30,8 +30,10 @@
                 <br>
                 {{ product.description }}
                 <br>
+                <!--<input type="hidden" name="{{ product.short_name }}hidden_price" id="{{ product.short_name }}hidden_price" value="{{ product.price }}">-->
             </div>
         {% endfor %}
+        {{ price_dict }}
     <div class="col-md-2"></div>
 </div>
 {% endblock %}

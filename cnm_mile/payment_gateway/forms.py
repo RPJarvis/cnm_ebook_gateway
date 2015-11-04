@@ -9,6 +9,7 @@ class UserInfoForm(forms.Form):
     cnm_email = forms.EmailField(max_length=40, label='CNM EMail', required=True, validators=[validate_email])
     book_choice = forms.ModelMultipleChoiceField(required=True, queryset=Product.objects.all())
 
+
     class Meta:
         model = UserInfo
         fields = ('first_name', 'last_name', 'cnm_email', 'book_choice')
