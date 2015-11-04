@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     var ajaxDBResponseData = 'bogus';
     function csrfSafeMethod(method) {
@@ -20,11 +19,10 @@ $(document).ready(function(){
                     }
                 }
             }
-                return cookieValue;
+            return cookieValue;
         }
 
     function passToInkling(){
-
         var csrftoken = getCookie('csrftoken');
 
         function csrfSafeMethod(method) {
@@ -109,29 +107,12 @@ $(document).ready(function(){
         });
     }
 
-    //TOUCHNET
-    $('#user_form').on('submit', function(event){
-        event.preventDefault();
-        $('#user_form').hide();
-        $('#loading_image').show();
-        console.log('can i see this?');
-        passToTouchnet();
-        //call url from here?
-    });
-
-
+    //Bulk upload in the admin backend
     $('#bulk_upload_btn').on('click', function(event){
         event.preventDefault();
         console.log('bulk button clicked');
         bulkUpload();
     });
-
-
-    //function getPrice(title){
-     //   var id = title.toLowerCase().replace(/\s+/g, '');
-      //  var selector = '#' + id + 'hidden_price';
-       // return $(selector).val();
-    //}
 
     //1main_submit
     $('#main_submit').on('click', function(event){
@@ -195,7 +176,7 @@ $(document).ready(function(){
             crossDomain: false, // obviates need for sameOrigin test
             beforeSend: function(xhr, settings) {
                 $('#main_submit').hide();
-                
+                $('#messages').append('Opening Touchnet');
                 if (!csrfSafeMethod(settings.type)) {
                     xhr.setRequestHeader("X-CSRFToken", csrftoken);
                 }
@@ -214,8 +195,6 @@ $(document).ready(function(){
             error: function(){
                 console.log('ajax error');
             }
-
         });
-
     }
 });
