@@ -7,11 +7,11 @@ from transaction_logging import models
 import json
 import inkling_tools
 import math
-import gateway_config
+
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
 import requests
-from django.db.models import Q
+
 # Create your views here.
 
 

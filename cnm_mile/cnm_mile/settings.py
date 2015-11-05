@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from payment_gateway import gateway_config
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -113,8 +113,6 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = PROJECT_PATH + '/static_files'
-
-TOUCHNET = gateway_config.TOUCHNET
 
 #this will have to be changed to use smtp later but might be able to use this as well
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

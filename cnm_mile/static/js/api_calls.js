@@ -22,7 +22,7 @@ $(document).ready(function(){
             error += ' Last Name - Letters only, please.';
             console.log(error);
         }
-        var edu_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu$/.test();
+        var edu_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu$/.test(userEmail);
         console.log('regex check' + edu_email);
         if(edu_email == false){
             error += ' You must use a \".edu\" email address to purchase a book.';
