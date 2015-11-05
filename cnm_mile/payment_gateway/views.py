@@ -11,6 +11,7 @@ import gateway_config
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
 import requests
+from django.db.models import Q
 # Create your views here.
 
 
@@ -117,11 +118,47 @@ def pass_to_inkling(request):
         )
 
 
-def postback(request):
+#DATA
+#def postback(request):
+#    if request.method == 'POST':
+#        status = request.POST.get('pmt_status')
+#        full_name = request.POST.get('name_on_acct')
+#        user_email = request.POST.get('acct_email_address')
+#        new_log_entry = TouchnetTransaction(user_id=user_email, first_name= , last_name= , title= ,
+ #                                           amount= , success_or_fail=status, details= ,)
+#        new_log_entry.save()
+    #SEND BACK 200 STATUS?
+
+#USER
+#def user_return(request):
+
+
+def check_purchase_history(request):
     if request.method == 'POST':
-
-        return render_to_response()
-
+        user = request.POST.get('email')
+        print(user)
+        title = request.POST.get('title')
+        print(title)
+        #hits = TouchnetTransaction.objects.filter(Q(user_id=user)) | Q(title=title)
+        hits = TouchnetTransaction.objects.filter(user_id=user)
+        print(hits)
+        if not list(hits):
+            status = {'purchased': False}
+            return HttpResponse(
+                json.dumps(status),
+                content_type="application/json"
+            )
+        else:
+            status = {'purchased': True}
+            return HttpResponse(
+                json.dumps(status),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps('huh?'),
+            content_type="application/json"
+        )
 
 
 
