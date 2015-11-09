@@ -7,7 +7,7 @@ from transaction_logging import models
 import json
 import inkling_tools
 import math
-
+from django.views.decorators.csrf import csrf_exempt
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
 import requests
@@ -119,18 +119,33 @@ def pass_to_inkling(request):
 
 
 #DATA
-#def postback(request):
-#    if request.method == 'POST':
-#        status = request.POST.get('pmt_status')
-#        full_name = request.POST.get('name_on_acct')
-#        user_email = request.POST.get('acct_email_address')
-#        new_log_entry = TouchnetTransaction(user_id=user_email, first_name= , last_name= , title= ,
- #                                           amount= , success_or_fail=status, details= ,)
-#        new_log_entry.save()
+@csrf_exempt
+def postback(request):
+    print('postback view hit')
+    #status = request.POST.get('pmt_status')
+    status = 'status placeholder'
+    #full_name = request.POST.get('name_on_acct')
+    first_name = 'PLACEHOLDER'
+    last_name = 'PLACEHOLDERLAST'
+    #user_email = request.POST.get('acct_email_address')
+    user_email = 'email placeholder'
+    title = 'PLACEHOLDERBOOK'
+    amt = 234.03
+    details = 'PLACEHOLDERDETAILS'
+    new_log_entry = TouchnetTransaction(user_id=user_email, first_name=first_name, last_name=last_name, title=title,
+                                       amount=amt, success_or_fail=status, details=details)
+    new_log_entry.save()
+
+    return HttpResponse(status=200)
     #SEND BACK 200 STATUS?
 
 #USER
-#def user_return(request):
+def user_return(request):
+    context = RequestContext(request)
+    confirmation_message = 'thank you for purchasing this thing good job'
+
+    context_dict = {'confirmation_message': confirmation_message}
+    return render_to_response('payment_gateway/base.html', context_dict, context)
 
 
 def check_purchase_history(request):
@@ -140,7 +155,8 @@ def check_purchase_history(request):
         title = request.POST.get('title')
         print(title)
         #hits = TouchnetTransaction.objects.filter(Q(user_id=user)) | Q(title=title)
-        hits = TouchnetTransaction.objects.filter(user_id=user)
+        hits = InklingTransaction.objects.filter(user_id=user)
+        #TODO:have tgo filter this by title still
         print(hits)
         if not list(hits):
             status = {'purchased': False}

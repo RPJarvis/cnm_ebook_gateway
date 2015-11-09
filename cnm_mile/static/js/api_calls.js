@@ -222,10 +222,7 @@ $(document).ready(function(){
         //$.post(final_url);
     }
 
-    //3
-    function receiveCallBack(){
-        console.log('callback');
-    }
+
 
 
     function getPrice(title){
