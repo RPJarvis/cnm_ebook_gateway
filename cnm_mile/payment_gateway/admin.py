@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Product, BulkUpload
 from transaction_logging.models import InklingTransaction
-import inkling_tools
+
 from django.conf.urls import url, patterns
 from payment_gateway.views import get_product_id
 import json
@@ -12,7 +12,7 @@ from django.template import RequestContext
 
 # ryan, jarvis, rjarvis1@cnm.edu;
 # cali, soberanes, csoberanes@cnm.edu;
-# gene, higgines, ghiggines@cnm.edu;
+# gene, higgins, ehigginsiii@cnm.edu;
 
 class ProductAdmin(admin.ModelAdmin):
     fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'description', 'site_id']

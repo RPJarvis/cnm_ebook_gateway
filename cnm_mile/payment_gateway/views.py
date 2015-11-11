@@ -5,12 +5,11 @@ from django.core.mail import send_mail
 from .models import Product, UserInfo
 from transaction_logging import models
 import json
-import inkling_tools
+
 import math
 from django.views.decorators.csrf import csrf_exempt
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
-import requests
 
 # Create your views here.
 
