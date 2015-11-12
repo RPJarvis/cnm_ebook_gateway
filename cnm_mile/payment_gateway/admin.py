@@ -12,7 +12,7 @@ from django.template import RequestContext
 
 # ryan, jarvis, rjarvis1@cnm.edu;
 # cali, soberanes, csoberanes@cnm.edu;
-# gene, higgines, ghiggines@cnm.edu;
+# gene, higgins, ghigginsiii@cnm.edu;
 
 class ProductAdmin(admin.ModelAdmin):
     fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'description', 'site_id']
