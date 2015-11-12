@@ -19,12 +19,20 @@ def index(request):
 
     form = forms.UserInfoForm()
     form_errors = form.errors.as_data()
-    product_list = Product.objects.all()
-
+    product_list = list(Product.objects.all())
+    product_list_length = product_list.__len__()
+    print(product_list_length)
+    featured_product = ''
+    product_list_length = 1
+    if product_list_length < 2:
+        featured_product = product_list[0]
+        print(featured_product)
+    else:
+        featured_product = ''
     #for product in product_list:
      #   product.short_name = product.title.lower().replace(' ', '')
       #  print(product.short_name)
-    context_dict = {'form': form, 'product_list': product_list, 'form_errors': form_errors}
+    context_dict = {'form': form, 'product_list': product_list, 'form_errors': form_errors, 'featured_product': featured_product}
 
     return render_to_response('payment_gateway/base.html', context_dict, context)
 
