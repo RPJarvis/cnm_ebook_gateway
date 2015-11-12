@@ -111,9 +111,37 @@ body {
     overflow: auto;
 }
 
-.featured {
-    background-color: #269abc;
+.row.featured {
+    background-color: #252525;
+    background-image:   linear-gradient(    rgba(0, 0, 0, 0.2), 
+                                            rgba(0, 0, 0, 0.45), 
+                                            rgba(0, 0, 0, 0.45),
+                                            rgba(0, 0, 0, 0.2) 
+                        ), 
+                        url('../images/bg-MILEgateway02.jpg');
 }
+
+.row .jumbotron {
+    font-family: 'Oswald', sans-serif; 
+    color: #fff;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.row .jumbotron .featured-image {
+    min-height: 140px;
+    max-width: 300px;
+    background-image: url("/static/images/nmh_final_cover_mobile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row .jumbotron .featured-copy{
+    max-width: 300px;
+}
+.row .jumbotron .featured-copy h3{
+    font-size: 28px;
+}    
 
 .form-block {
     background-color: #5bc0de;
@@ -121,4 +149,26 @@ body {
 
 .product-list {
     background-color: #3071a9;
+}
+
+@media screen and (min-width: 768px) {
+    .row .jumbotron {
+        flex-direction: row;
+    }
+    .row .jumbotron .featured-copy {
+        margin-left: 15px;
+        padding-top: 20px;
+        font-size: 18px;
+        flex-grow: 1;
+        max-width: none;
+    }
+    .row .jumbotron .featured-image {
+        flex-grow: 1;
+        background-image: url("/static/images/nmh_final_cover_300px.png");
+        background-size: contain;
+        min-width: 300px;
+    }
+    .row .jumbotron .featured-copy h3{
+        font-size: 28px;
+    }    
 }
