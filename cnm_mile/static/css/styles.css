@@ -76,26 +76,6 @@ body {
   z-index: 1002;
   overflow: auto; }
 
-.row.featured {
-  background-color: #252525;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)), url("../images/bg-MILEgateway02.jpg"); }
-
-.row .jumbotron {
-  color: #fff;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; }
-
-.row .jumbotron .featured-image {
-  min-height: 140px;
-  max-width: 300px;
-  background-size: cover;
-  flex-grow: 1; }
-
-.row .jumbotron .featured-copy {
-  max-width: 300px; }
-
 .form-block {
   background-color: #5bc0de; }
 
@@ -121,13 +101,29 @@ body {
 
 .row.featured {
   margin-top: -68px;
-  z-index: -1; }
+  z-index: -1;
+  background-color: #252525;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)), url("../images/bg-MILEgateway02.jpg"); }
+  .row.featured p {
+    font-weight: 300; }
 
 .row .jumbotron {
-  margin-top: 68px; }
-  .row .jumbotron .featured-copy h3 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2em; }
+  margin-top: 68px;
+  color: #fff;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .row .jumbotron .featured-copy {
+    max-width: 300px; }
+    .row .jumbotron .featured-copy h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2em; }
+  .row .jumbotron .featured-image {
+    min-height: 140px;
+    max-width: 300px;
+    background-size: cover;
+    flex-grow: 1; }
   .row .jumbotron .cover-image {
     background-repeat: no-repeat;
     background-size: cover; }
@@ -146,23 +142,24 @@ p {
 @media screen and (min-width: 768px) {
   .row .jumbotron {
     flex-direction: row; }
-    .row .jumbotron p {
-      font-size: 1em; }
     .row .jumbotron .cover-image {
       display: none;
-      width: 100%;
+      min-width: 300px;
       height: 400px;
       background-size: contain; }
       .row .jumbotron .cover-image.desktop-image {
         display: block; }
       .row .jumbotron .cover-image.phone-image {
         background-image: none !important; }
-  .row .featured-copy {
-    margin-left: 15px;
-    font-size: 18px;
-    flex-grow: 1;
-    max-width: none; }
-    .row .featured-copy h3 {
-      font-size: 28px; }
-  .row .featured-image {
-    margin-top: 20px; } }
+    .row .jumbotron .featured-copy {
+      margin-left: 40px;
+      font-size: 18px;
+      flex-grow: 1;
+      max-width: none; }
+      .row .jumbotron .featured-copy h3 {
+        font-size: 28px; }
+      .row .jumbotron .featured-copy p {
+        font-size: 1em;
+        text-shadow: 0px 0px 5px rgba(25, 25, 25, 0.8); }
+    .row .jumbotron .featured-image {
+      margin-top: 20px; } }

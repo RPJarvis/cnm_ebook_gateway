@@ -9,8 +9,12 @@
             </div>
             <!-- <img src="/static/images/nmh_final_cover_300px.png"> -->
             <div class="featured-copy">
-                <h3>The History of New Mexico</h3>
-                <p>Isn't it fantastic that you can change your mind and create all these happy things? In your imagination you can go anywhere you want. A thin paint will stick to a thick paint. In painting, you have unlimited power. You have the ability to move mountains. You can bend rivers. But when I get home, the only thing I have power over is the garbage.</p>
+                <h3>{{ featured_product.title }}</h3>
+                <!-- <h3>The History of New Mexico</h3> -->
+                <p>Author: {{ featured_product.author }} </p>
+                <p>Available to: {{ featured_product.availability }} </p>
+                <p>${{ featured_product.price }}</p>
+                <p>{{featured_product.description}}</p>
             </div>
         </div>
     <div class="col-md-2"></div>

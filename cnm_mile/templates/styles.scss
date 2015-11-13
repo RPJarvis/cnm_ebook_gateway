@@ -7,7 +7,7 @@
 }
 
 #id_department {
-       font-size: 26px;
+ font-size: 26px;
 }
 
 .align_center {
@@ -25,13 +25,13 @@ footer {
 }
 
 @media (max-width: 580px) {
-   input {
-       height: 34px;
-       width: 80%;
-   }
-   form {
-       font-size: 20px;
-   }
+ input {
+     height: 34px;
+     width: 80%;
+ }
+ form {
+     font-size: 20px;
+ }
 }
 
 @media (max-width: 990px) {
@@ -99,33 +99,8 @@ body {
     overflow: auto;
 }
 
-.row.featured {
-    background-color: #252525;
-    background-image:   linear-gradient(    rgba(0, 0, 0, 0.2), 
-                                            rgba(0, 0, 0, 0.45), 
-                                            rgba(0, 0, 0, 0.45),
-                                            rgba(0, 0, 0, 0.2) 
-                        ), 
-                        url('../images/bg-MILEgateway02.jpg');
-}
-
-.row .jumbotron {
-    color: #fff;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.row .jumbotron .featured-image {
-    min-height: 140px;
-    max-width: 300px;
-    // background-image: url("/static/images/nmh_final_cover_mobile.png");
-    // background-repeat: no-repeat;
-    background-size: cover;
-    flex-grow: 1;
-}
 .row .jumbotron .featured-copy{
-    max-width: 300px;
+
 }
 
 .form-block {
@@ -164,17 +139,41 @@ body {
     &.featured {
         margin-top: -68px;
         z-index: -1;
+        background-color: #252525;
+        background-image:   linear-gradient(    rgba(0, 0, 0, 0.2), 
+            rgba(0, 0, 0, 0.45), 
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.2) 
+            ), 
+        url('../images/bg-MILEgateway02.jpg');
+        p {
+            font-weight: 300;
+        }
     }
 
     .jumbotron {
         margin-top: 68px;
+        color: #fff;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .featured-copy {
+            max-width: 300px;
             h3 {
                 font-family: 'Oswald', sans-serif; 
                 font-size: 2em;
             }
         }
+        .featured-image {
+            min-height: 140px;
+            max-width: 300px;
+            // background-image: url("/static/images/nmh_final_cover_mobile.png");
+            // background-repeat: no-repeat;
+            background-size: cover;
+            flex-grow: 1;
+        }        
         .cover-image {
             background-repeat: no-repeat;
             background-size: cover;
@@ -207,32 +206,35 @@ p {
         .jumbotron{
             flex-direction: row;
 
-            p {
-                font-size: 1em;
-            }
             .cover-image {
                 // background-image: url("/static/images/nmh_final_cover_300px.png");
                 display: none;
-                width: 100%;
+                min-width: 300px;
                 height: 400px;
                 background-size: contain;
 
                 &.desktop-image { display: block}
                 &.phone-image { background-image: none !important }
             }
-       }
-        .featured-copy {
-            margin-left: 15px;
-            // padding-top: 20px;
-            font-size: 18px;
-            flex-grow: 1;
-            max-width: none;
-            h3{
-                font-size: 28px;
+            .featured-copy {
+                margin-left: 40px;
+                // padding-top: 20px;
+                font-size: 18px;
+                flex-grow: 1;
+                max-width: none;
+                h3{
+                    font-size: 28px;
+                }                
+                p {
+                    font-size: 1em;
+                    text-shadow: 0px 0px 5px rgba(25, 25, 25, .8);
+                }
             }
-        }
-        .featured-image {
-            margin-top: 20px;
+
+            .featured-image {
+
+                margin-top: 20px;
+            }
         }
     }
 }
