@@ -167,6 +167,8 @@ body {
     }
 
     .jumbotron {
+        margin-top: 68px;
+
         .featured-copy {
             h3 {
                 font-family: 'Oswald', sans-serif; 
@@ -175,7 +177,7 @@ body {
         }
         .cover-image {
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: cover;
         }
     }
 }    
@@ -188,7 +190,8 @@ p {
     .row {
         .jumbotron {
             .cover-image {
-                min-width: 300px;
+                min-width: 260px;
+                
                 &.desktop-image { background-image: none !important}
                 &.phone-image { display: block }
 
@@ -207,7 +210,17 @@ p {
             p {
                 font-size: 1em;
             }
-        }
+            .cover-image {
+                // background-image: url("/static/images/nmh_final_cover_300px.png");
+                display: none;
+                width: 100%;
+                height: 400px;
+                background-size: contain;
+
+                &.desktop-image { display: block}
+                &.phone-image { background-image: none !important }
+            }
+       }
         .featured-copy {
             margin-left: 15px;
             // padding-top: 20px;
@@ -220,15 +233,6 @@ p {
         }
         .featured-image {
             margin-top: 20px;
-        }
-        .cover-image {
-            // background-image: url("/static/images/nmh_final_cover_300px.png");
-            display: none;
-            width: 100%;
-            height: 400px;
-
-            &.desktop-image { display: block}
-            &.phone-image { background-image: none !important }
         }
     }
 }
