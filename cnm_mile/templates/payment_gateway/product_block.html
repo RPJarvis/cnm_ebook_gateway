@@ -3,7 +3,10 @@
 <div class="row featured">
     <div class="col-md-2"></div>
         <div class="col-md-8 jumbotron">
-            <div class="featured-image"> <!-- featured product image here as div background --> </div>
+            <div class="featured-image"> 
+                <span class="cover-image desktop-image" style="background-image: url(' {{ featured_product.cover_image.url }} ')"></span>
+                <span class="cover-image phone-image" style="background-image: url(' {{ featured_product.cover_image.url }} ')"></span>
+            </div>
             <!-- <img src="/static/images/nmh_final_cover_300px.png"> -->
             <div class="featured-copy">
                 <h3>The History of New Mexico</h3>
