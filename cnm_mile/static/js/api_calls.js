@@ -205,17 +205,18 @@ $(document).ready(function(){
         form.setAttribute("action", final_url);
 
         // setting form target to a window named 'formresult'
-        form.setAttribute("target", "formresult");
+        //form.setAttribute("target", "formresult");
 
-        var hiddenField = document.createElement("input");
+        //var hiddenField = document.createElement("input");
 
-        document.body.appendChild(form);
+        //document.body.appendChild(form);
 
         // creating the 'formresult' window with custom features prior to submitting the form
-        window.open('', 'formresult', 'scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,status=no');
+        window.location.assign(final_url);
+        //window.open('', 'formresult', 'scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,status=no');
         //############ TRY LOCATION HERE???
 
-        form.submit();
+        //form.submit();
 
         //SAME WINDOW
         //var base_url = "https:\/\/test.secure.touchnet.net:8443/C20016test_upay/web/index.jsp";
