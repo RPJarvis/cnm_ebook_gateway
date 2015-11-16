@@ -213,6 +213,7 @@ $(document).ready(function(){
 
         // creating the 'formresult' window with custom features prior to submitting the form
         window.open('', 'formresult', 'scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,status=no');
+        //############ TRY LOCATION HERE???
 
         form.submit();
 
