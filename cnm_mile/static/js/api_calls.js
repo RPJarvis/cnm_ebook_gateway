@@ -59,6 +59,7 @@ $(document).ready(function(){
         }
     });
 
+
     function csrfSafeMethod(method) {
             // these HTTP methods do not require CSRF protection
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -168,7 +169,6 @@ $(document).ready(function(){
     //Bulk upload in the admin backend
     $('#bulk_upload_btn').on('click', function(event){
         event.preventDefault();
-        console.log('bulk button clicked');
         bulkUpload();
     });
 
@@ -176,7 +176,6 @@ $(document).ready(function(){
     function dispatch(title, price, site_id){
         if(price > 0){
             passToTouchnet(price, site_id);
-            //passToInkling(); inkling has to be handled in callback view from touchnet
         }
         else{
             passToInkling();
@@ -190,8 +189,6 @@ $(document).ready(function(){
 //AmEx: 343434343434343
 //DI:  6011666666666666
 
-        //WITH FORM IN POPUP
-        console.log('pass to touchnet');
         var user_first = $('#id_first_name').val();
         var user_last = $('#id_last_name').val();
         var full_name = '&BILL_NAME=' + user_first + ' ' + user_last;
@@ -205,26 +202,19 @@ $(document).ready(function(){
         form.setAttribute("action", final_url);
 
         // setting form target to a window named 'formresult'
-        //form.setAttribute("target", "formresult");
+        form.setAttribute("target", "formresult");
 
         //var hiddenField = document.createElement("input");
 
-        //document.body.appendChild(form);
+        document.body.appendChild(form);
+        //window.location.href = final_url;
 
         // creating the 'formresult' window with custom features prior to submitting the form
-        window.location.assign(final_url);
         //window.open('', 'formresult', 'scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,status=no');
-        //############ TRY LOCATION HERE???
 
-        //form.submit();
-
-        //SAME WINDOW
-        //var base_url = "https:\/\/test.secure.touchnet.net:8443/C20016test_upay/web/index.jsp";
-        //var final_url = base_url + '?UPAY_SITE_ID=' + site_id;
-        //$.post(final_url);
+        window.location.assign(final_url);
+        form.submit();
     }
-
-
 
 
     function getPrice(title){

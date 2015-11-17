@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% include 'payment_gateway/index.html' %}
 
 {% load static from staticfiles %}
 <html>
@@ -16,6 +15,7 @@
     <title>CNM MILE</title>
 </head>
 <body>
+    {% include 'payment_gateway/index.html' %}
 
     {% block index_block %}
     {% endblock %}
