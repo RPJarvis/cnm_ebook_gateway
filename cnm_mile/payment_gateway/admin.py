@@ -15,7 +15,7 @@ from django.template import RequestContext
 # gene, higgins, ehigginsiii@cnm.edu;
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'description', 'site_id']
+    fields = ['title', 'author', 'price', 'availability', 'inkling_product_id', 'cover_image', 'mobile_cover_image', 'description', 'site_id']
 
 admin.site.register(Product, ProductAdmin)
 
