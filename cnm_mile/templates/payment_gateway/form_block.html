@@ -1,37 +1,46 @@
 
 {% block form_block %}
 <div class="row form-block">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        {% if message %}
-            <div class="message">
-                {{ message }}
-            </div>
-        {% endif %}
-        {% if display_email %}
-            {% for key, value in display_email.items %}
-                {{ key }}:  {{ value }} <br/>
-            {% endfor %}
-        {% endif %}
-        <p>Some sort of message about using a real email or your purchase will be in vain. Perhaps two email fields and compare?</p>
-        <form action="/pass_to_inkling/" method="post" id="user_form">
-            {% csrf_token %}
-            {%  for field in form.visible_fields %}
-                <div class="field-container">
-                    {{ field.label }}
-                    <br />
-                    {{ field }}
-                    <br />
-                    {{ field.errors }}
+    <!-- <div class="col-md-2"></div> -->
+    <div class="container">
+        <div id="instructions">
+            <ul>
+                <li>Step one</li>
+                <li>Step two</li>
+                <li>Step three</li>
+            </ul>
+        </div>
+        <div id="form">
+            {% if message %}
+                <div class="message">
+                    {{ message }}
                 </div>
-            {% endfor %}
-            <br/>
-            <!--<input type="submit" value="test inkling post" role="button">-->
+            {% endif %}
+            {% if display_email %}
+                {% for key, value in display_email.items %}
+                    {{ key }}:  {{ value }} <br/>
+                {% endfor %}
+            {% endif %}
+            <p>Some sort of message about using a real email or your purchase will be in vain. Perhaps two email fields and compare?</p>
+            <form action="/pass_to_inkling/" method="post" id="user_form">
+                {% csrf_token %}
+                {%  for field in form.visible_fields %}
+                    <div class="field-container">
+                        {{ field.label }}
+                        <br />
+                        {{ field }}
+                        <br />
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <br/>
+                <!--<input type="submit" value="test inkling post" role="button">-->
 
-        </form>
-        <img src="/static/images/ajaxloader.gif" id="loading_image">
+            </form>
+            <img src="/static/images/ajaxloader.gif" id="loading_image">
+        </div>
     </div>
-    <div class="col-md-2"></div>
+    <!-- <div class="col-md-2"></div> -->
 </div>
 <div class="row">
     <div class="col-md-2"></div>
