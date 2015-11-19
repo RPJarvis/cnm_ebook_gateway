@@ -93,7 +93,8 @@ body {
     width: auto; }
 
 .navbar-inverse {
-  background-color: rgba(0, 0, 0, 0.5); }
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0; }
   .navbar-inverse img {
     height: 62px; }
 
@@ -109,12 +110,19 @@ h1, h2, h3, h4, h5 {
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap; }
   .row .product-list .product {
-    width: 100px;
+    width: 100%;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
-            flex-grow: 1;
-    padding: 5px; }
+            flex-grow: 1; }
+    .row .product-list .product .cover-image {
+      height: auto;
+      width: 100%;
+      border: 1px solid #fff; }
+      .row .product-list .product .cover-image.desktop-image {
+        display: none; }
+      .row .product-list .product .cover-image.phone-image {
+        display: block; }
 
 .row.featured {
   margin-top: -68px;
@@ -144,7 +152,8 @@ h1, h2, h3, h4, h5 {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 0px; }
+  margin-bottom: 0px;
+  padding: 0; }
   .row .jumbotron .container {
     display: -webkit-box;
     display: -webkit-flex;
@@ -159,17 +168,19 @@ h1, h2, h3, h4, h5 {
     -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
-    padding-left: 0px;
-    padding-right: 0px; }
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; }
   .row .jumbotron .featured-copy {
-    max-width: 300px; }
+    max-width: 100%; }
     .row .jumbotron .featured-copy h3 {
       font-size: 1.5em; }
     .row .jumbotron .featured-copy p {
       font-size: 1em; }
   .row .jumbotron .featured-image {
     min-height: 140px;
-    max-width: 300px;
+    max-width: 400px;
     background-size: cover;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
@@ -197,9 +208,11 @@ p {
 
 @media screen and (max-width: 415px) {
   .row .jumbotron .cover-image {
-    min-width: 260px; }
+    min-width: 260px;
+    width: 100%;
+    height: auto; }
     .row .jumbotron .cover-image.desktop-image {
-      background-image: none !important; }
+      display: none; }
     .row .jumbotron .cover-image.phone-image {
       display: block; } }
 
@@ -207,10 +220,25 @@ p {
   .row {
     padding-top: 10px;
     padding-bottom: 10px; }
-    .row.product-list {
+    .row.featured {
+      padding: 38px 0; }
+    .row .product-list {
       -webkit-flex-flow: row wrap;
           -ms-flex-flow: row wrap;
               flex-flow: row wrap; }
+      .row .product-list .product {
+        max-width: 200px;
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1;
+        padding: 5px; }
+        .row .product-list .product .cover-image {
+          max-width: 200px; }
+          .row .product-list .product .cover-image.desktop-image {
+            display: block; }
+          .row .product-list .product .cover-image.phone-image {
+            display: none; }
     .row .jumbotron {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
@@ -224,15 +252,6 @@ p {
         -webkit-flex-direction: row;
             -ms-flex-direction: row;
                 flex-direction: row; }
-      .row .jumbotron .cover-image {
-        display: none;
-        min-width: 300px;
-        height: 400px;
-        background-size: contain; }
-        .row .jumbotron .cover-image.desktop-image {
-          display: block; }
-        .row .jumbotron .cover-image.phone-image {
-          background-image: none !important; }
       .row .jumbotron .featured-copy {
         margin-left: 40px;
         font-size: 18px;
@@ -247,7 +266,17 @@ p {
           font-size: 1em;
           text-shadow: 0px 0px 5px rgba(25, 25, 25, 0.8); }
       .row .jumbotron .featured-image {
-        margin-top: 20px; }
+        margin-top: 20px;
+        border: 2px solid #fff; }
+        .row .jumbotron .featured-image .cover-image {
+          display: none;
+          min-width: 300px;
+          height: 400px;
+          background-size: contain; }
+          .row .jumbotron .featured-image .cover-image.desktop-image {
+            display: block; }
+          .row .jumbotron .featured-image .cover-image.phone-image {
+            display: none; }
     .row.form-block .container {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;

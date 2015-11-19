@@ -101,11 +101,6 @@ body {
     overflow: auto;
 }
 
-.row .jumbotron .featured-copy{
-
-}
-
-
 
 
 #header {
@@ -134,6 +129,7 @@ body {
 
 .navbar-inverse {
     background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
 
     img {
         height: 62px;
@@ -150,11 +146,20 @@ h1, h2, h3, h4, h5 {
         display: flex;
         flex-flow: column nowrap;
 
+
         .product {
-            width: 100px;
+            width: 100%;
             flex-grow: 1;
-            padding: 5px;
-        }
+                
+            .cover-image {
+                height: auto;
+                width: 100%;
+                border: 1px solid #fff;
+
+                &.desktop-image { display: none}
+                &.phone-image { display: block }                    
+            }
+         }
     }
 
     &.featured {
@@ -182,17 +187,21 @@ h1, h2, h3, h4, h5 {
         flex-direction: column;
         justify-content: center;
         margin-bottom: 0px;
+        padding: 0;
 
         .container {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-left: 0px;
-            padding-right: 0px;
+
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         .featured-copy {
-            max-width: 300px;
+            max-width: 100%;
             h3 {
                 font-size: 1.5em;
             }
@@ -202,7 +211,7 @@ h1, h2, h3, h4, h5 {
         }
         .featured-image {
             min-height: 140px;
-            max-width: 300px;
+            max-width: 400px;
             // background-image: url("/static/images/nmh_final_cover_mobile.png");
             // background-repeat: no-repeat;
             background-size: cover;
@@ -232,8 +241,10 @@ p {
         .jumbotron {
             .cover-image {
                 min-width: 260px;
+                width: 100%;
+                height: auto;
                 
-                &.desktop-image { background-image: none !important}
+                &.desktop-image { display: none }
                 &.phone-image { display: block }
 
             }
@@ -246,8 +257,28 @@ p {
         padding-top: 10px;
         padding-bottom: 10px;
 
-        &.product-list {
+        &.featured {
+            padding: 38px 0;
+        }
+
+        .product-list {
             flex-flow: row wrap;
+
+            .product {
+                // width: 100px;
+                max-width: 200px;
+                flex-grow: 1;
+                padding: 5px;
+
+                .cover-image {
+                    max-width: 200px;
+
+                    &.desktop-image { display: block}
+                    &.phone-image { display: none }
+
+                }
+
+           }
 
             p {
 
@@ -263,16 +294,6 @@ p {
             }
 
 
-            .cover-image {
-                // background-image: url("/static/images/nmh_final_cover_300px.png");
-                display: none;
-                min-width: 300px;
-                height: 400px;
-                background-size: contain;
-
-                &.desktop-image { display: block}
-                &.phone-image { background-image: none !important }
-            }
             .featured-copy {
                 margin-left: 40px;
                 // padding-top: 20px;
@@ -291,6 +312,18 @@ p {
             .featured-image {
 
                 margin-top: 20px;
+                border: 2px solid #fff;
+
+                .cover-image {
+                    // background-image: url("/static/images/nmh_final_cover_300px.png");
+                    display: none;
+                    min-width: 300px;
+                    height: 400px;
+                    background-size: contain;
+
+                    &.desktop-image { display: block}
+                    &.phone-image { display: none }
+                }
             }
         }
         &.form-block {
