@@ -21,7 +21,7 @@
                     {{ key }}:  {{ value }} <br/>
                 {% endfor %}
             {% endif %}
-            <p>Some sort of message about using a real email or your purchase will be in vain. Perhaps two email fields and compare?</p>
+            <!-- <p>Some sort of message about using a real email or your purchase will be in vain. Perhaps two email fields and compare?</p> -->
             <form action="/pass_to_inkling/" method="post" id="user_form">
                 {% csrf_token %}
                 {%  for field in form.visible_fields %}

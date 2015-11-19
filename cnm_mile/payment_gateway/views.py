@@ -4,10 +4,8 @@ from payment_gateway import forms
 from .models import Product, UserInfo
 from transaction_logging import models
 import json
-import inkling_tools
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
-import requests
 
 # Create your views here.
 
