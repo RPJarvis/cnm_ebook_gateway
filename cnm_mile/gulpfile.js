@@ -8,7 +8,7 @@ gulp.task('styles', function() {
     	// .pipe (sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         // .pipe(sourcemaps.write())
-    	.pipe(autoprefixer())
+    	.pipe(autoprefixer({ browsers: ['last 3 versions'] }))
         .pipe(gulp.dest('static/css/'))
 });
 
