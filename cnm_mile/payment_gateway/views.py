@@ -19,12 +19,10 @@ def index(request):
     form_errors = form.errors.as_data()
     product_list = list(Product.objects.all())
     product_list_length = product_list.__len__()
-    print(product_list_length)
     featured_product = ''
     product_list_length = 1
     if product_list_length < 2:
         featured_product = product_list[0]
-        print(featured_product)
     else:
         featured_product = ''
     #for product in product_list:
@@ -45,6 +43,12 @@ def get_price(request):
 
         return HttpResponse(
             json.dumps(response),
+            content_type="application/json"
+        )
+
+    else:
+        return HttpResponse(
+            json.dumps('I can\'t let you do that, Dave.'),
             content_type="application/json"
         )
 
@@ -121,6 +125,7 @@ def pass_to_inkling(request):
 #DATA
 @csrf_exempt
 def postback(request):
+
     print('postback view hit')
     #status = request.POST.get('pmt_status')
     status = 'status placeholder'
@@ -135,6 +140,9 @@ def postback(request):
     new_log_entry = TouchnetTransaction(user_id=user_email, first_name=first_name, last_name=last_name, title=title,
                                        amount=amt, success_or_fail=status, details=details)
     new_log_entry.save()
+
+    if status == 'GOOD':
+        provision_inkling(first_name, last_name, user_email, title)
 
     return HttpResponse(status=200)
     #SEND BACK 200 STATUS?
@@ -189,7 +197,6 @@ def get_upay_id(title):
     return product[0].site_id
 
 
-
 #this should check for price then call wrapped pass to touchnet or pass to inkling
 def pass_to_touchnet(request):
     if request.method == 'POST':
@@ -198,3 +205,45 @@ def pass_to_touchnet(request):
 
         data = {"UPAY_SITE_ID": upay_site_id}
         requests.post(url, data)
+
+
+def provision_inkling(first, last, email, title):
+
+    product_id = get_product_id(title)
+    data = {
+         "email": email,
+         "productId": product_id,
+         "firstName": first,
+         "lastName": last,
+         "receiveEmail": True,
+         "checkoutAmount": 1000,
+         "partnerInfo": {
+              "partnerSiteId": "...",
+               "partnerPermaItemUrl": "...",
+              "partnerTransactionId": "..."
+         }
+    }
+
+    response_data = inkling_tools.post('/purchases', data)
+
+    #MAKE A LOG ENTRY
+    user_details = ''
+    logging_details = ''
+    success_or_fail = ''
+    type = 'user purchase'
+    if response_data['status']['statusCode'] == 'HTTPCreated':
+         logging_details = 'Successfully Provisioned.'
+         success_or_fail = 'success'
+    elif response_data['status']['statusCode'] == 'DuplicatePurchase':
+        logging_details = 'Duplicate purchase.'
+        success_or_fail = 'fail'
+    elif response_data['status']['statusCode'] == 'SchemaValidationError':
+        logging_details = 'Missing one or more fields'
+        success_or_fail = 'fail'
+    else:
+        logging_details = 'Connection error'
+        success_or_fail = 'fail'
+
+    new_log_entry = InklingTransaction(user_id=email, type=type, first_name=first, last_name=last,
+                                        title=title, success_or_fail=success_or_fail, details=logging_details)
+    new_log_entry.save()
