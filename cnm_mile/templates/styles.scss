@@ -205,6 +205,7 @@ h1, h2, h3, h4, h5 {
 
         .featured-copy {
             max-width: 100%;
+            flex-grow: 1;
             h3 {
                 font-size: 1.5em;
             }
@@ -291,6 +292,7 @@ p {
             .container {
                 flex-direction: row;
                 align-items: flex-start;
+                justify-content: space-around;
             }
 
 
@@ -299,7 +301,9 @@ p {
                 // padding-top: 20px;
                 font-size: 18px;
                 flex-grow: 1;
-                max-width: none;
+                width: 50%;
+                max-width: 800px;
+                // max-width: none;
                 h3{
                     font-size: 28px;
                 }                
@@ -314,18 +318,19 @@ p {
 
                 margin-top: 20px;
                 border: 2px solid #fff;
+                width: 50%;
+                max-width: 304px;
 
                 .cover-image {
                     // background-image: url("/static/images/nmh_final_cover_300px.png");
                     display: none;
-                    min-width: 300px;
-                    height: 400px;
-                    background-size: contain;
+                    width: 300px;
+                    // height: 400px;
+                    // background-size: contain;
 
                     &.desktop-image { display: block}
                     &.phone-image { 
                         display: none; 
-                        [hidden] { display: none; }
                     }
                 }
             }
