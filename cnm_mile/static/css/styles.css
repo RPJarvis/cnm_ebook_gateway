@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5 {
     background-color: #252525;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)), url("../images/bg-MILEgateway02.jpg"); }
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)), url("../images/bg-MILEgateway02.jpg"); }
     .row.featured p {
       font-weight: 300; }
   .row .jumbotron {
@@ -226,8 +226,10 @@ p {
     .row.form-block .container #instructions {
       -webkit-flex-grow: 1;
           -ms-flex-positive: 1;
-              flex-grow: 1; }
+              flex-grow: 1;
+      width: 45%; }
     .row.form-block .container #form {
       -webkit-flex-grow: 1;
           -ms-flex-positive: 1;
-              flex-grow: 1; } }
+              flex-grow: 1;
+      width: 45%; } }
