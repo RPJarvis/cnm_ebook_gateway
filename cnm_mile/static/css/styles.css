@@ -132,6 +132,7 @@ h1, h2, h3, h4, h5 {
     .row .jumbotron .featured-image {
       min-height: 140px;
       max-width: 400px;
+      border: 2px solid #fff;
       background-size: cover;
       -webkit-flex-grow: 1;
           -ms-flex-positive: 1;
@@ -209,7 +210,6 @@ p {
         text-shadow: 0px 0px 5px rgba(25, 25, 25, 0.8); }
     .row .jumbotron .featured-image {
       margin-top: 20px;
-      border: 2px solid #fff;
       width: 50%;
       max-width: 304px; }
       .row .jumbotron .featured-image .cover-image {

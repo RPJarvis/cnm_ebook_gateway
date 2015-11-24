@@ -218,6 +218,7 @@ h1, h2, h3, h4, h5 {
         .featured-image {
             min-height: 140px;
             max-width: 400px;
+            border: 2px solid #fff;
             // background-image: url("/static/images/nmh_final_cover_mobile.png");
             // background-repeat: no-repeat;
             background-size: cover;
@@ -319,7 +320,7 @@ p {
             .featured-image {
 
                 margin-top: 20px;
-                border: 2px solid #fff;
+                
                 width: 50%;
                 max-width: 304px;
 
