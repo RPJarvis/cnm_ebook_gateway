@@ -3,6 +3,7 @@ from django.template import RequestContext
 from payment_gateway import forms
 from .models import Product, UserInfo
 from transaction_logging import models
+from . import inkling_tools
 import json
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
