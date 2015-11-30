@@ -8,3 +8,6 @@ inkling_tools.py
 *.txt
 bulktest.py
 db.sqlite3
+cnm_mile/node_modules
+.DS_Store
+cnm_mile/.DS_Store

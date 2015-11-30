@@ -1,40 +1,51 @@
 
 {% block product_block %}
 <div class="row featured">
-    <div class="col-md-2"></div>
-        <div class="col-md-8 jumbotron">
-            <h5>Featured Item</h5>
-            <p>Featured Item Here? On launch, there will be only one book, which will obviously be the featured book
-            Later it will need to accomodate however many books, so some sort of list display will be necessary where maybe
-            user can click to open more info on that particular book.</p>
-        </div>
-    <div class="col-md-2"></div>
-</div>
-<div class="row product-list">
-    <h5>Product List</h5>
-    <p>Dummy product list that won't be there at launch but needs to be there for later</p>
-    <div class="col-md-2"></div>
-        {% for product in product_list %}
-           <div class="col-md-2">
-                <img src="{{ product.cover_image.url }}" class="cover-image"/>
-                <br>
-                {{ product.title }}
-
-                <br>
-                {{ product.author }}
-                <br>
-                Available to:
-                {{ product.availability }}
-                <br>
-                {{ product.price }}
-                <br>
-                {{ product.description }}
-                <br>
-                <!--<input type="hidden" name="{{ product.short_name }}hidden_price" id="{{ product.short_name }}hidden_price" value="{{ product.price }}">-->
+    <!-- <div class="col-md-2"></div> -->
+    <!-- <div class="col-md-8 jumbotron"> -->
+    <div class="jumbotron">
+        <div class="container">
+            <div class="featured-image"> 
+                <!-- <span class="cover-image desktop-image" style="background-image: url(' {{ featured_product.cover_image.url }} ')"></span>
+                <span class="cover-image phone-image" style="background-image: url(' {{ featured_product.mobile_cover_image.url }} ')"></span> -->
+                <img src="{{ featured_product.mobile_cover_image.url}}" class="cover-image phone-image">
+                <img src="{{ featured_product.cover_image.url}}" class="cover-image desktop-image">
             </div>
-        {% endfor %}
-        {{ price_dict }}
-    <div class="col-md-2"></div>
+            <!-- <img src="/static/images/nmh_final_cover_300px.png"> -->
+            <div class="featured-copy">
+                <h3>{{ featured_product.title }}</h3>
+                <!-- <h3>The History of New Mexico</h3> -->
+                <p>Author: {{ featured_product.author }} </p>
+                <p>Available to: {{ featured_product.availability }} </p>
+                <p>${{ featured_product.price }}</p>
+                <p>{{featured_product.description}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-md-2"></div> -->
+</div>
+<div class="row">
+    <div class="container">
+        <h4>All Titles</h4>
+        <p>Dummy product list that won't be there at launch but needs to be there for later</p>
+        <!-- <div class="col-md-2"></div> -->
+        <div class="product-list">
+            {% for product in product_list %}
+               <div class="product">
+                    <img src="{{ product.mobile_cover_image.url}}" class="cover-image phone-image">
+                    <img src="{{ product.cover_image.url}}" class="cover-image desktop-image">
+                    <h5>{{ product.title }}</h5>
+                    <p>Author: {{ product.author }}</p>
+                    <p>Available to: {{ product.availability }}</p>
+                    <p>{{ product.price }}</p>
+                    <!-- <p>{{ product.description }}</p> -->
+                    <!--<input type="hidden" name="{{ product.short_name }}hidden_price" id="{{ product.short_name }}hidden_price" value="{{ product.price }}">-->
+                </div>
+            {% endfor %}
+            {{ price_dict }}
+        <!-- <div class="col-md-2"></div> -->
+        </div>
+    </div>
 </div>
 {% endblock %}
 

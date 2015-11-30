@@ -7,7 +7,6 @@ from . import inkling_tools
 import json
 from transaction_logging.models import TouchnetTransaction, InklingTransaction
 from django.views.decorators.csrf import csrf_exempt
-import requests
 
 # Create your views here.
 

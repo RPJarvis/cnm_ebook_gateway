@@ -1,0 +1,388 @@
+
+
+#content {
+    padding: 20px 20px 20px 20px;
+
+
+}
+
+#id_department {
+ font-size: 26px;
+}
+
+.align_center {
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
+
+footer {
+    color: white;
+    background-color: #003A70;
+    border-top: 3px solid #F6BE00;
+    width: 100%;
+}
+
+// @media (max-width: 580px) {
+//    input {
+//        height: 34px;
+//        width: 80%;
+//    }
+//    form {
+//        font-size: 20px;
+//    }
+// }
+
+// @media (max-width: 990px) {
+//     h1 {
+//         text-align: left;
+//     }
+// }
+
+body {
+   background-color: #252525;
+   color: #fff;
+   font-family: 'Merriweather', serif;
+}
+
+#loading_image {
+    display: none;
+}
+
+
+// .cover-image {
+//     height: 120px;
+//     width: 80px;
+// }
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+.row {
+    margin: 0;
+}
+
+// .product-listing {
+//     display: inline-block;
+// }
+
+// .black_overlay{
+//     display: none;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: black;
+//     z-index:1001;
+//     -moz-opacity: 0.8;
+//     opacity:.80;
+//     filter: alpha(opacity=80);
+// }
+// .white_content {
+//     display: none;
+//     position: absolute;
+//     top: 25%;
+//     left: 25%;
+//     width: 50%;
+//     height: 50%;
+//     padding: 16px;
+//     border: 16px solid gray;
+//     background-color: white;
+//     z-index:1002;
+//     overflow: auto;
+// }
+
+
+
+#header {
+
+    // background-color: #003A70;
+    padding: 3px 3px 3px 3px;
+    height: 68px;
+    border-bottom: 4px solid #41b6e6;
+    z-index: 1;
+
+    .transparent-background {
+        width: 100%;
+        height: 71px;
+        background: rgba(0,0,0,0.5);
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    img {
+        height: 60px;
+        width: auto;
+    }
+}
+
+.navbar-inverse {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+
+    img {
+        height: 62px;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Oswald', sans-serif; 
+
+}
+
+.row {
+    padding: 38px 0;
+
+
+    .product-list {
+        display: flex;
+        flex-flow: column nowrap;
+
+
+        .product {
+            width: 100%;
+            flex-grow: 1;
+
+            .cover-image {
+                height: auto;
+                width: 100%;
+                border: 1px solid #fff;
+
+                &.desktop-image { display: none}
+                &.phone-image { display: block }                    
+            }
+        }
+    }
+
+    &.featured {
+        margin-top: -68px;
+        z-index: -1;
+        background-color: #252525;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image:   linear-gradient(    
+            rgba(0, 0, 0, 0.2), 
+            rgba(0, 0, 0, 0.2), 
+            rgba(0, 0, 0, 0.45), 
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.2) 
+            ), 
+        url('../images/bg-MILEgateway02.jpg');
+        p {
+            font-weight: 300;
+        }
+    }
+
+    .jumbotron {
+        margin-top: 130px;
+        color: #fff;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 0px;
+        padding: 0;
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .featured-copy {
+            max-width: 100%;
+            flex-grow: 1;
+            h3 {
+                font-size: 1.5em;
+            }
+            p{
+                font-size: 1em;
+            }
+        }
+        .featured-image {
+            min-height: 140px;
+            max-width: 400px;
+            border: 2px solid #fff;
+            // background-image: url("/static/images/nmh_final_cover_mobile.png");
+            // background-repeat: no-repeat;
+            background-size: cover;
+            flex-grow: 1;
+        }        
+        .cover-image {
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+    &.form-block {
+        background-color: #5bc0de;
+
+        h2 {
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}    
+
+p {
+    font-family: 'Merriweather', serif;
+}
+
+@media screen and (max-width: 415px) {
+    .row {
+        .jumbotron {
+            .cover-image {
+                min-width: 260px;
+                width: 100%;
+                height: auto;
+                
+                &.desktop-image { display: none }
+                &.phone-image { display: block }
+
+            }
+        }
+    }    
+}
+
+/* Portrait ipad */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .row
+        &.formblock {
+            .container {
+                .instructions {
+                    max-width: 400px;
+                }
+            }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .row {
+        // padding-top: 10px;
+        // padding-bottom: 10px;
+
+        .product-list {
+            flex-flow: row wrap;
+
+            .product {
+                // width: 100px;
+                max-width: 200px;
+                flex-grow: 1;
+                padding: 5px;
+
+                .cover-image {
+                    max-width: 200px;
+
+                    &.desktop-image { display: block}
+                    &.phone-image { display: none }
+
+                }
+
+            }
+
+            p {
+
+            }
+        }
+
+        .jumbotron{
+            flex-direction: row;
+            margin-top: 105px;
+
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-around;
+            }
+
+
+            .featured-copy {
+                margin-left: 40px;
+                // padding-top: 20px;
+                font-size: 18px;
+                flex-grow: 1;
+                width: 50%;
+                max-width: 800px;
+                // max-width: none;
+                h3{
+                    font-size: 28px;
+                }                
+                p {
+                    font-size: 1em;
+                    text-shadow: 0px 0px 5px rgba(25, 25, 25, 0.8);
+                }
+            }
+
+
+            .featured-image {
+
+                margin-top: 20px;
+                
+                width: 50%;
+                max-width: 304px;
+
+                .cover-image {
+                    // background-image: url("/static/images/nmh_final_cover_300px.png");
+                    display: none;
+                    width: 300px;
+                    // height: 400px;
+                    // background-size: contain;
+
+                    &.desktop-image { display: block}
+                    &.phone-image { 
+                        display: none; 
+                    }
+                }
+            }
+        }
+        &.form-block {
+
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+
+                #instructions {
+                    flex-grow: 1;
+                    max-width: 500px;
+                    margin-right: auto;
+
+                    h2 {
+                        font-size: 30px;
+                    }
+                    h3 {
+                        color: blue;
+                    }
+                }
+
+                #form {
+                    flex-grow: 1;
+                    max-width: 500px;
+                    min-width: 300px;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
