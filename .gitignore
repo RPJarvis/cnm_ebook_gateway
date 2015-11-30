@@ -7,3 +7,6 @@ gateway_config.py
 inkling_tools.py
 *.txt
 bulktest.py
+node_modules
+.DS_Store
+cnm_mile/.DS_Store

@@ -7,7 +7,7 @@
 }
 
 #id_department {
-   font-size: 26px;
+ font-size: 26px;
 }
 
 .align_center {
@@ -41,9 +41,9 @@ footer {
 // }
 
 body {
- background-color: #252525;
- color: #fff;
- font-family: 'Merriweather', serif;
+   background-color: #252525;
+   color: #fff;
+   font-family: 'Merriweather', serif;
 }
 
 #loading_image {
@@ -153,7 +153,7 @@ h1, h2, h3, h4, h5 {
         .product {
             width: 100%;
             flex-grow: 1;
-                
+
             .cover-image {
                 height: auto;
                 width: 100%;
@@ -162,7 +162,7 @@ h1, h2, h3, h4, h5 {
                 &.desktop-image { display: none}
                 &.phone-image { display: block }                    
             }
-         }
+        }
     }
 
     &.featured {
@@ -232,6 +232,10 @@ h1, h2, h3, h4, h5 {
     &.form-block {
         background-color: #5bc0de;
 
+        h2 {
+            font-size: 24px;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
@@ -259,7 +263,22 @@ p {
     }    
 }
 
-@media screen and (min-width: 415px) {
+/* Portrait ipad */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .row
+        &.formblock {
+            .container {
+                .instructions {
+                    max-width: 400px;
+                }
+            }
+    }
+}
+
+@media screen and (min-width: 768px) {
     .row {
         // padding-top: 10px;
         // padding-bottom: 10px;
@@ -281,7 +300,7 @@ p {
 
                 }
 
-           }
+            }
 
             p {
 
@@ -342,18 +361,28 @@ p {
 
             .container {
                 flex-direction: row;
+                justify-content: space-between;
 
                 #instructions {
                     flex-grow: 1;
-                    width: 45%;
+                    max-width: 500px;
+                    margin-right: auto;
+
+                    h2 {
+                        font-size: 30px;
+                    }
+                    h3 {
+                        color: blue;
+                    }
                 }
 
                 #form {
                     flex-grow: 1;
-                    width: 45%;
+                    max-width: 500px;
+                    min-width: 300px;
+                    margin-left: auto;
                 }
             }
         }
-
     }
 }
