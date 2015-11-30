@@ -28,6 +28,7 @@ class Product(models.Model):
     def __unicode__(self):
         return self.title
 
+#This broke migrate twice, should probably be elsewhere
 
 bulk_choices = list()
 products = Product.objects.all()

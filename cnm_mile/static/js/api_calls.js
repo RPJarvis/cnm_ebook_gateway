@@ -14,13 +14,11 @@ $(document).ready(function(){
         console.log('letters only first check' + lettersOnlyFirst);
         if(lettersOnlyFirst == false){
             error += ' First Name - Letters only, please.';
-            console.log(error);
         }
         var lettersOnlyLast = /^[a-zA-Z]+(-[a-zA-Z]+)*$/.test($('#id_last_name').val());
         console.log('letters only last check' + lettersOnlyLast);
         if(lettersOnlyLast == false){
             error += ' Last Name - Letters only, please.';
-            console.log(error);
         }
         var edu_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.edu$/.test(userEmail);
         console.log('regex check' + edu_email);

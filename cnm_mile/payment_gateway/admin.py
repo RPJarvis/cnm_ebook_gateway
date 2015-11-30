@@ -27,22 +27,15 @@ class BulkUploadAdmin(admin.ModelAdmin):
 
 def do_bulk_upload(request):
     context = RequestContext(request)
-    print(context)
+
     product_list = Product.objects.all()
     if request.method == 'POST':
         user_data = []
         data = str(request.POST.get('data'))
         book_choice = request.POST.get('book_choice')
-        print('########BOOK CHOICE########')
-        print(book_choice)
-        product_id = get_product_id(book_choice)
-        #TRY CATCH THIS SHIT
 
         product_id = get_product_id(book_choice)
-        print('########PRODUCT ID##########')
-        print(product_id)
         user_string = ','.join(data.split(',')[:])
-        #while loop?
 
         users = data.replace("\n", "").strip(" ").split(';')
         for person in users:
@@ -71,7 +64,7 @@ def do_bulk_upload(request):
             }
 
             response_data = inkling_tools.post('/purchases', data)
-             #TODO: STRUCTURE THE RESPONSE DATA
+
             user_details = ''
             logging_details = ''
             success_or_fail = ''
@@ -96,11 +89,7 @@ def do_bulk_upload(request):
             result_display = {'user': email, 'first_name': first_name, 'last_name': last_name, 'details': logging_details}
 
             result_data.append(result_display)
-            print(result_data)
 
-
-        #TODO: RENDER TO RESPONSE HERE? maybe not look at jkson object
-        #return render_to_response('admin/')
         return HttpResponse(
             json.dumps(result_data),
             content_type="application/json"
