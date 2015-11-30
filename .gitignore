@@ -7,3 +7,4 @@ gateway_config.py
 inkling_tools.py
 *.txt
 bulktest.py
+db.sqlite3
